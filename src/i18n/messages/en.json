@@ -1,0 +1,47 @@
+{
+  "home": {
+    "about": "About",
+    "benRia": "Bên rìa thế giới (viết)",
+    "beTheFlow": "BeTheFlow (barista)"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "benRia": "Bên Rìa",
+    "beTheFlow": "BeTheFlow",
+    "language": "Language"
+  },
+  "common": {
+    "readMore": "Read More",
+    "readingTime": "{minutes} min read",
+    "publishedOn": "Published on",
+    "tags": "Tags",
+    "share": "Share",
+    "relatedPosts": "Related Posts",
+    "backTo": "Back to {section}",
+    "loadMore": "Load More",
+    "noPostsFound": "No posts found",
+    "search": "Search",
+    "filterByTag": "Filter by tag"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "Personal branding and creative journey"
+  },
+  "benRia": {
+    "title": "Bên Rìa Thế Giới",
+    "subtitle": "Writings and Reflections",
+    "description": "Literary thoughts and creative writing"
+  },
+  "beTheFlow": {
+    "title": "BeTheFlow",
+    "subtitle": "Barista Journey",
+    "description": "Coffee culture, brewing techniques, and cafe experiences"
+  },
+  "footer": {
+    "copyright": "© {year} All rights reserved",
+    "followMe": "Follow Me",
+    "contact": "Get in touch"
+  }
+}
+

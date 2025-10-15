@@ -1,0 +1,47 @@
+{
+  "home": {
+    "about": "Giới Thiệu",
+    "benRia": "Bên rìa thế giới (viết)",
+    "beTheFlow": "BeTheFlow (barista)"
+  },
+  "nav": {
+    "home": "Trang Chủ",
+    "about": "Giới Thiệu",
+    "benRia": "Bên Rìa",
+    "beTheFlow": "BeTheFlow",
+    "language": "Ngôn Ngữ"
+  },
+  "common": {
+    "readMore": "Đọc Thêm",
+    "readingTime": "{minutes} phút đọc",
+    "publishedOn": "Xuất bản vào",
+    "tags": "Thẻ",
+    "share": "Chia Sẻ",
+    "relatedPosts": "Bài Viết Liên Quan",
+    "backTo": "Quay lại {section}",
+    "loadMore": "Tải Thêm",
+    "noPostsFound": "Không tìm thấy bài viết",
+    "search": "Tìm Kiếm",
+    "filterByTag": "Lọc theo thẻ"
+  },
+  "about": {
+    "title": "Giới Thiệu",
+    "description": "Thương hiệu cá nhân và hành trình sáng tạo"
+  },
+  "benRia": {
+    "title": "Bên Rìa Thế Giới",
+    "subtitle": "Viết Lách & Suy Ngẫm",
+    "description": "Những suy nghĩ văn học và viết lách sáng tạo"
+  },
+  "beTheFlow": {
+    "title": "BeTheFlow",
+    "subtitle": "Hành Trình Barista",
+    "description": "Văn hóa cà phê, kỹ thuật pha chế và trải nghiệm quán"
+  },
+  "footer": {
+    "copyright": "© {year} Bản quyền thuộc về",
+    "followMe": "Theo Dõi",
+    "contact": "Liên hệ"
+  }
+}
+
