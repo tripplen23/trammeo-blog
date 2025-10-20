@@ -4,14 +4,12 @@ import React from 'react';
 import { Link } from '@/i18n/routing';
 
 interface GalleryProjectProps {
-  index: number;
   title: string;
   description?: string;
   route: string;
 }
 
 export default function GalleryProject({ 
-  index, 
   title, 
   description = 'Design & Development',
   route,

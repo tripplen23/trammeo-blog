@@ -38,7 +38,6 @@ export default function ProjectGallery({ projects = defaultProjects }: ProjectGa
         {projects.map((project, index) => (
           <GalleryProject
             key={index}
-            index={index}
             title={project.title}
             description={project.description}
             route={project.route}

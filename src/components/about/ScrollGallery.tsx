@@ -1,12 +1,12 @@
 'use client';
 
-import { motion, useSpring } from 'framer-motion';
+import { motion, useSpring, type MotionValue } from 'framer-motion';
 import Image from 'next/image';
 
 interface GalleryItemProps {
   mousePosition: {
-    x: any;
-    y: any;
+    x: MotionValue<number>;
+    y: MotionValue<number>;
   };
   backgroundImage: string;
   vignetteImage: string;
@@ -101,4 +101,3 @@ export default function ScrollGallery({ items }: ScrollGalleryProps) {
     </div>
   );
 }
-

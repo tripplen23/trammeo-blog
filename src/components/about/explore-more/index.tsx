@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { useScroll, useTransform, motion } from 'framer-motion';
+import { useRef } from 'react';
+import { useScroll, useTransform, motion, type MotionValue } from 'framer-motion';
 import Image from 'next/image';
 import ProjectGallery from './ProjectGallery';
 
@@ -25,7 +25,7 @@ export default function AboutExploreMore({ children }: AboutExploreMoreProps) {
 }
 
 interface SectionProps {
-  scrollYProgress: any;
+  scrollYProgress: MotionValue<number>;
   children?: React.ReactNode;
 }
 
