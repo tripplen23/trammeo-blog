@@ -53,11 +53,10 @@ export default function MaskAnimation() {
           }}
         >
           <video autoPlay muted loop className="h-full w-full object-cover">
-            <source src="/medias/nature.mp4" type="video/mp4" />
+            <source src="/medias/flow-intro.webm" type="video/webm" />
           </video>
         </div>
       </div>
     </main>
   );
 }
-

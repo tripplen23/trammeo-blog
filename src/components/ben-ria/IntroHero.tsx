@@ -2,6 +2,7 @@
 
 import { useScroll, useTransform, motion } from 'framer-motion';
 import { useRef } from 'react';
+import Image from 'next/image';
 
 export default function IntroHero() {
   const container = useRef<HTMLDivElement>(null);
@@ -15,16 +16,29 @@ export default function IntroHero() {
   return (
     <div ref={container} className='h-screen overflow-hidden relative'>
       <motion.div style={{ y }} className='relative h-full'>
-        {/* Natural earthy gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#5D866C] via-[#C2A68C] to-[#E6D8C3]" />
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/benria-bg.webp"
+            fill
+            alt="Bên Rìa Thế Giới Background"
+            className="object-cover"
+            priority
+            quality={90}
+          />
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/30" />
+        </div>
         {/* Overlay text */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <div className="text-center text-white px-6">
             <h1 className="text-7xl md:text-8xl font-bold mb-4 drop-shadow-2xl">
               Bên Rìa Thế Giới
             </h1>
+            <br />
+            <br />
             <p className="text-xl md:text-2xl drop-shadow-lg opacity-90">
-              Những suy nghĩ văn học và viết lách sáng tạo
+              Nơi cô ba viết lách và suy ngẫm!
             </p>
           </div>
         </div>

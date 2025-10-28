@@ -16,7 +16,7 @@ export default function HorizontalPostsSection({ posts }: HorizontalPostsSection
     offset: ['start end', 'end start']
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-50%']);
+  const x = useTransform(scrollYProgress, [0, 1], ['50%', '-50%']);
 
   if (posts.length === 0) {
     return (

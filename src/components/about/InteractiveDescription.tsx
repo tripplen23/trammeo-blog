@@ -25,7 +25,7 @@ export default function InteractiveDescription({
       title: 'Ranh giới ấy khiến cô tin rằng',
     },
     {
-      title: 'những điều tốt đẹp vẫn hiện hữu, chỉ cần chúng ta chịu mở lòng.',
+      title: 'những điều tốt đẹp vẫn hiện hữu,',
     },
     {
       title: 'chỉ cần chúng ta chịu mở lòng.',
