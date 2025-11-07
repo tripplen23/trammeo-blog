@@ -67,7 +67,7 @@ function AnimatedText({ children }: { children: string }) {
   }, []);
 
   return (
-    <p ref={text} className="m-0 relative">
+    <p ref={text} className="ml-0 relative">
       {children}
     </p>
   );

@@ -1,6 +1,6 @@
 import { defineField, defineType } from 'sanity';
 
-export default defineType({
+const authorSchema = defineType({
   name: 'author',
   title: 'Author',
   type: 'document',
@@ -48,3 +48,4 @@ export default defineType({
   },
 });
 
+export default authorSchema

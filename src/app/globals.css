@@ -34,12 +34,6 @@
   }
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -49,6 +43,12 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans, Arial, Helvetica, sans-serif);
   overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Ensure main content has proper spacing */
+main {
+  width: 100%;
 }
 
 /* Custom Utility Classes */
@@ -76,9 +76,36 @@ body {
   background-color: var(--color-about);
 }
 
+/* Blog Content Styles */
+.blog-content {
+  width: 100%;
+  max-width: 100%;
+}
+
+.blog-content > * {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.blog-content p {
+  text-align: left;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.blog-content h2,
+.blog-content h3 {
+  text-align: left;
+  width: 100%;
+  color: var(--foreground);
+  padding-left: 0;
+  margin-left: 0;
+}
+
 /* Prose Styles */
 .prose {
   color: var(--foreground);
+  max-width: 100%;
 }
 
 .prose h1,
@@ -87,6 +114,23 @@ body {
 .prose h4 {
   color: var(--foreground);
   font-weight: 700;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.prose h2 {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.prose h3 {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.prose p {
+  margin-bottom: 1.5em;
+  line-height: 1.75;
 }
 
 .prose a {
@@ -108,4 +152,10 @@ body {
   padding-left: 1rem;
   font-style: italic;
   color: #6b7280;
+  margin: 1.5em 0;
+}
+
+.prose img {
+  margin: 2em 0;
+  border-radius: 0.5rem;
 }

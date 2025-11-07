@@ -74,7 +74,7 @@ export default async function PostPage({ params }: PostPageProps) {
           imageAlt={post.coverImage.alt || title}
           speed={0.5}
         >
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg px-6">
             {title}
           </h1>
           <time className="text-lg font-medium drop-shadow">{formattedDate}</time>
@@ -82,15 +82,15 @@ export default async function PostPage({ params }: PostPageProps) {
       )}
 
       {/* Content */}
-      <article className="container mx-auto px-6 py-16">
-        <div className="max-w-3xl mx-auto">
+      <article className="w-full py-16">
+        <div className="max-w-5xl mx-auto px-6 md:px-12 lg:px-20">
           {/* Tags */}
           {post.tags && post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-8">
+            <div className="flex flex-wrap gap-2 mb-12 justify-center">
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-sm px-3 py-1 bg-pink-50 text-benria rounded-full"
+                  className="text-sm px-4 py-2 bg-pink-50 text-benria rounded-full"
                 >
                   {tag}
                 </span>
@@ -99,15 +99,15 @@ export default async function PostPage({ params }: PostPageProps) {
           )}
 
           {/* Portable Text Content */}
-          <div className="prose prose-lg prose-pink max-w-none">
+          <div className="blog-content w-full space-y-6">
             <PortableText
               value={content}
               components={{
                 types: {
                   image: ({ value }) => (
-                    <div className="my-8 relative h-96">
+                    <div className="my-12 relative h-[500px] w-full">
                       <Image
-                        src={urlForImage(value).width(800).height(600).url()}
+                        src={urlForImage(value).width(1200).height(800).url()}
                         alt={value.alt || 'Post image'}
                         fill
                         className="object-cover rounded-lg"
@@ -115,11 +115,28 @@ export default async function PostPage({ params }: PostPageProps) {
                     </div>
                   ),
                 },
+                block: {
+                  h2: ({ children }) => (
+                    <h2 className="text-3xl md:text-4xl font-bold mt-12 mb-6">
+                      {children}
+                    </h2>
+                  ),
+                  h3: ({ children }) => (
+                    <h3 className="text-2xl md:text-3xl font-bold mt-10 mb-5">
+                      {children}
+                    </h3>
+                  ),
+                  normal: ({ children }) => (
+                    <p className="text-lg md:text-xl leading-relaxed mb-6">
+                      {children}
+                    </p>
+                  ),
+                },
                 marks: {
                   link: ({ children, value }) => (
                     <a
                       href={value.href}
-                      className="text-benria hover:underline"
+                      className="text-benria hover:underline font-medium"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -132,10 +149,10 @@ export default async function PostPage({ params }: PostPageProps) {
           </div>
 
           {/* Back Link */}
-          <div className="mt-12 pt-8 border-t border-gray-200">
+          <div className="mt-16 pt-8 border-t border-gray-300 text-center">
             <Link
               href="/ben-ria-the-gioi"
-              className="inline-flex items-center text-benria hover:underline"
+              className="inline-flex items-center text-white hover:text-gray-200 hover:underline text-lg font-medium"
             >
               ← {t('backTo', { section: 'Bên Rìa Thế Giới' })}
             </Link>
@@ -145,12 +162,14 @@ export default async function PostPage({ params }: PostPageProps) {
 
       {/* Related Posts */}
       {relatedPosts.length > 0 && (
-        <section className="container mx-auto px-6 py-16 bg-gray-50">
-          <h2 className="text-3xl font-bold mb-8">{t('relatedPosts')}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {relatedPosts.map((relatedPost) => (
-              <PostCard key={relatedPost._id} post={relatedPost} />
-            ))}
+        <section className="w-full bg-gray-50">
+          <div className="max-w-5xl mx-auto px-6 md:px-12 lg:px-20 py-16">
+            <h2 className="text-3xl font-bold mb-8 text-gray-900">{t('relatedPosts')}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {relatedPosts.map((relatedPost) => (
+                <PostCard key={relatedPost._id} post={relatedPost} />
+              ))}
+            </div>
           </div>
         </section>
       )}

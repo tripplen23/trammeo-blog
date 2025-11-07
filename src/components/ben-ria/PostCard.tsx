@@ -37,7 +37,7 @@ export default function PostCard({ post }: PostCardProps) {
             >
               <Image
                 src={urlForImage(post.coverImage).width(800).height(600).url()}
-                alt={post.coverImage.alt || title}
+                alt={post.coverImage?.alt || title || 'Blog post image'}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
