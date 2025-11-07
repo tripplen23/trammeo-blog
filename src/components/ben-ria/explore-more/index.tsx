@@ -30,7 +30,6 @@ const StorySection = ({ scrollYProgress }: SectionProps) => {
   return (
     <motion.div
       style={{ scale, rotate }}
-      // @ts-expect-error - framer-motion v12 type inference issue with className
       className="sticky top-0 h-screen"
     >
       {/* Background Image */}
@@ -64,7 +63,6 @@ const FinalSection = ({ scrollYProgress }: SectionProps) => {
   return (
     <motion.div
       style={{ scale, rotate }}
-      // @ts-expect-error - framer-motion v12 type inference issue with className
       className="relative h-screen"
     >
       {/* Background Image */}

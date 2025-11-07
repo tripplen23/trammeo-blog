@@ -2,8 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Link } from '@/i18n/routing';
-import { useLocale, useTranslations } from 'next-intl';
+import Link from 'next/link';
 import { urlForImage } from '@/lib/sanity';
 import type { Post } from '@/lib/sanity';
 
@@ -12,12 +11,9 @@ interface PostCardProps {
 }
 
 export default function PostCard({ post }: PostCardProps) {
-  const locale = useLocale() as 'en' | 'vi';
-  const t = useTranslations('common');
-
-  const title = post.title[locale] || post.title.en;
-  const excerpt = post.excerpt?.[locale] || post.excerpt?.en || '';
-  const formattedDate = new Date(post.publishedAt).toLocaleDateString(locale, {
+  const title = post.title.vi;
+  const excerpt = post.excerpt?.vi || '';
+  const formattedDate = new Date(post.publishedAt).toLocaleDateString('vi', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -77,7 +73,7 @@ export default function PostCard({ post }: PostCardProps) {
 
           <div className="pt-2">
             <span className="text-sm font-medium text-benria group-hover:underline">
-              {t('readMore')} →
+              Đọc Thêm →
             </span>
           </div>
         </div>
@@ -85,4 +81,3 @@ export default function PostCard({ post }: PostCardProps) {
     </Link>
   );
 }
-
