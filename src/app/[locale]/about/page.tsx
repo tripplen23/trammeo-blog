@@ -6,6 +6,7 @@ import AboutExploreMore from '@/components/about/explore-more';
 import SmoothScroll from '@/components/home/SmoothScroll';
 import ScrollGallery from '@/components/about/ScrollGallery';
 import InteractiveDescription from '@/components/about/InteractiveDescription';
+import BlackHoleEntrance from '@/components/about/BlackHoleEntrance';
 
 export async function generateMetadata({
   params,
@@ -24,17 +25,19 @@ export async function generateMetadata({
 export default async function AboutPage() {
   return (
     <SmoothScroll>
-      <main className="min-h-screen bg-black">
-        <AboutIntro />
-        <AboutDescription />
-        {/* Scroll Gallery with auto-playing sections */}
-        <ScrollGallery />
-        {/* Interactive section with hover effects */}
-        <InteractiveDescription />
-        <AboutExploreMore>
-          <AboutStory />
-        </AboutExploreMore>
-      </main>
+      <BlackHoleEntrance>
+        <main className="min-h-screen bg-black">
+          <AboutIntro />
+          <AboutDescription />
+          {/* Scroll Gallery with auto-playing sections */}
+          <ScrollGallery />
+          {/* Interactive section with hover effects */}
+          <InteractiveDescription />
+          <AboutExploreMore>
+            <AboutStory />
+          </AboutExploreMore>
+        </main>
+      </BlackHoleEntrance>
     </SmoothScroll>
   );
 }
