@@ -159,3 +159,13 @@ main {
   margin: 2em 0;
   border-radius: 0.5rem;
 }
+
+/* Hide scrollbar for touch-scroll elements */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}

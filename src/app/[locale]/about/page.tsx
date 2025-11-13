@@ -7,6 +7,7 @@ import SmoothScroll from '@/components/home/SmoothScroll';
 import ScrollGallery from '@/components/about/ScrollGallery';
 import InteractiveDescription from '@/components/about/InteractiveDescription';
 import BlackHoleEntrance from '@/components/about/BlackHoleEntrance';
+import PersonalTimeline from '@/components/about/PersonalTimeline';
 
 export async function generateMetadata({
   params,
@@ -29,6 +30,8 @@ export default async function AboutPage() {
         <main className="min-h-screen bg-black">
           <AboutIntro />
           <AboutDescription />
+          {/* Personal Timeline with scroll animations */}
+          {/* <PersonalTimeline /> */}
           {/* Scroll Gallery with auto-playing sections */}
           <ScrollGallery />
           {/* Interactive section with hover effects */}
