@@ -30,14 +30,15 @@ export default function ParallaxSection({
 
   return (
     <div ref={ref} className="relative h-[70vh] overflow-hidden">
-      <motion.div style={{ y }} className="absolute inset-0 scale-110">
+      <motion.div style={{ y }} className="absolute inset-0">
         <Image
           src={imageSrc}
           alt={imageAlt}
           fill
           className="object-cover"
           sizes="100vw"
-          priority
+          loading="lazy"
+          quality={85}
         />
       </motion.div>
       
@@ -58,7 +59,3 @@ export default function ParallaxSection({
     </div>
   );
 }
-
-
-
-

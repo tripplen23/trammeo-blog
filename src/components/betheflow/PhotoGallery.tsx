@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, X, MoreHorizontal } from 'lucide-react';
@@ -41,13 +41,15 @@ export default function PhotoGallery() {
     }, []);
 
     // Calculate total pages
-    const totalPages = Math.ceil(photos.length / ITEMS_PER_PAGE);
+    const totalPages = useMemo(() => Math.ceil(photos.length / ITEMS_PER_PAGE), [photos.length]);
 
     // Get current photos
-    const currentPhotos = photos.slice(
-        currentPage * ITEMS_PER_PAGE,
-        (currentPage + 1) * ITEMS_PER_PAGE
-    );
+    const currentPhotos = useMemo(() => {
+        return photos.slice(
+            currentPage * ITEMS_PER_PAGE,
+            (currentPage + 1) * ITEMS_PER_PAGE
+        );
+    }, [photos, currentPage]);
 
     const handleNextPage = () => {
         if (currentPage < totalPages - 1) {
@@ -131,11 +133,12 @@ export default function PhotoGallery() {
                                 onClick={() => handlePhotoClick(photo)}
                             >
                                 <Image
-                                    src={urlForImage(photo.image).url()}
+                                    src={urlForImage(photo.image).width(600).height(600).quality(80).url()}
                                     alt={photo.caption}
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                                     sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                                    loading="lazy"
                                 />
 
                                 {/* Hover Overlay */}
@@ -208,11 +211,12 @@ export default function PhotoGallery() {
                             <div className="relative w-full md:w-[60%] bg-black flex items-center justify-center aspect-square md:aspect-auto">
                                 <div className="relative w-full h-full min-h-[300px] md:min-h-[600px]">
                                     <Image
-                                        src={urlForImage(selectedPhoto.image).url()}
+                                        src={urlForImage(selectedPhoto.image).width(1200).height(1200).quality(90).url()}
                                         alt={selectedPhoto.caption}
                                         fill
                                         className="object-contain"
                                         sizes="(max-width: 768px) 100vw, 60vw"
+                                        priority
                                     />
                                 </div>
                             </div>

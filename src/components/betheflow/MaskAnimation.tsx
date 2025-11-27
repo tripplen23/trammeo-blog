@@ -5,34 +5,49 @@ import { useRef, useEffect } from 'react';
 export default function MaskAnimation() {
   const container = useRef<HTMLDivElement>(null);
   const stickyMask = useRef<HTMLDivElement>(null);
+  const animationFrameRef = useRef<number | null>(null);
+  const easedScrollProgressRef = useRef(0);
 
   const initialMaskSize = 0.5;
   const targetMaskSize = 20;
   const easing = 0.15;
-  let easedScrollProgress = 0;
-
-  const getScrollProgress = () => {
-    if (!stickyMask.current || !container.current) return 0;
-
-    const scrollProgress =
-      stickyMask.current.offsetTop /
-      (container.current.getBoundingClientRect().height - window.innerHeight);
-    const delta = scrollProgress - easedScrollProgress;
-    easedScrollProgress += delta * easing;
-    return easedScrollProgress;
-  };
-
-  const animate = () => {
-    const maskSizeProgress = targetMaskSize * getScrollProgress();
-    if (stickyMask.current) {
-      stickyMask.current.style.webkitMaskSize = (initialMaskSize + maskSizeProgress) * 100 + '%';
-    }
-    requestAnimationFrame(animate);
-  };
 
   useEffect(() => {
-    requestAnimationFrame(animate);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const getScrollProgress = () => {
+      if (!stickyMask.current || !container.current) return 0;
+
+      const scrollProgress =
+        stickyMask.current.offsetTop /
+        (container.current.getBoundingClientRect().height - window.innerHeight);
+      const delta = scrollProgress - easedScrollProgressRef.current;
+      easedScrollProgressRef.current += delta * easing;
+      return easedScrollProgressRef.current;
+    };
+
+    const animate = () => {
+      if (!stickyMask.current) return;
+
+      const maskSizeProgress = targetMaskSize * getScrollProgress();
+      const newSize = (initialMaskSize + maskSizeProgress) * 100 + '%';
+      
+      // Only update if value changed significantly (reduce repaints)
+      if (stickyMask.current.style.webkitMaskSize !== newSize) {
+        stickyMask.current.style.webkitMaskSize = newSize;
+      }
+      
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
+
+    // Start animation
+    animationFrameRef.current = requestAnimationFrame(animate);
+
+    // Cleanup function
+    return () => {
+      if (animationFrameRef.current !== null) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
+    };
   }, []);
 
   return (
@@ -52,7 +67,14 @@ export default function MaskAnimation() {
             WebkitMaskSize: '80%',
           }}
         >
-          <video autoPlay muted loop className="h-full w-full object-cover">
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            playsInline
+            preload="metadata"
+            className="h-full w-full object-cover"
+          >
             <source src="/medias/flow-intro.webm" type="video/webm" />
           </video>
         </div>
