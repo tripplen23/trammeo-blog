@@ -123,7 +123,7 @@ export default function EntryScreen({ onEnter, isAnimating, onAnimationComplete 
   const handleAnimationComplete = () => {
     // Only trigger completion callback if we're actually animating
     if (!isAnimating) return;
-    
+
     // Remove will-change after animation completes
     if (dotRef.current) {
       dotRef.current.style.willChange = 'auto';
@@ -133,7 +133,7 @@ export default function EntryScreen({ onEnter, isAnimating, onAnimationComplete 
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (isAnimating) return;
-    
+
     // Trigger animation on Enter or Space key
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault(); // Prevent space from scrolling
@@ -147,7 +147,7 @@ export default function EntryScreen({ onEnter, isAnimating, onAnimationComplete 
   const selectedBackgroundVariants = prefersReducedMotion ? backgroundVariantsReduced : backgroundVariants;
 
   return (
-    <motion.div 
+    <motion.div
       className="fixed inset-0 z-40 flex items-center justify-center"
       variants={selectedBackgroundVariants}
       initial="initial"
@@ -160,14 +160,14 @@ export default function EntryScreen({ onEnter, isAnimating, onAnimationComplete 
       <motion.div
         className="absolute rounded-full border-[3px] border-black pointer-events-none"
         style={{
-          width: '600px',
-          height: '600px',
+          width: 'min(600px, 85vw, 60vh)',
+          height: 'min(600px, 85vw, 60vh)',
         }}
         variants={selectedCircleVariants}
         initial="initial"
         animate={isAnimating ? 'animate' : 'initial'}
       />
-      
+
       <motion.button
         ref={dotRef}
         role="button"

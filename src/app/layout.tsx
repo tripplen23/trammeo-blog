@@ -1,16 +1,11 @@
 import type { Metadata } from 'next';
-import { Lora, Open_Sans } from 'next/font/google';
+import { Space_Grotesk } from 'next/font/google';
 import './globals.css';
 
-const geistSans = Lora({
-  variable: '--font-lora',
-  subsets: ['latin'],
-  display: 'swap',
-});
-
-const geistMono = Open_Sans({
-  variable: '--font-open-sans',
-  subsets: ['latin'],
+const spaceGrotesk = Space_Grotesk({
+  variable: '--font-space-grotesk',
+  subsets: ['latin', 'vietnamese'],
+  weight: ['300', '400', '500', '600', '700'],
   display: 'swap',
 });
 
@@ -26,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
-      <body className="antialiased">{children}</body>
+    <html lang="en" className={spaceGrotesk.variable} suppressHydrationWarning>
+      <body className="antialiased font-sans">{children}</body>
     </html>
   );
 }

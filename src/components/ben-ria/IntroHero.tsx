@@ -33,13 +33,8 @@ export default function IntroHero() {
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <div className="text-center text-white px-6">
             <h1 className="text-7xl md:text-8xl font-bold mb-4 drop-shadow-2xl">
-              Bên Rìa Thế Giới
+              Có một trái tim
             </h1>
-            <br />
-            <br />
-            <p className="text-xl md:text-2xl drop-shadow-lg opacity-90">
-              Nơi cô ba viết lách và suy ngẫm!
-            </p>
           </div>
         </div>
       </motion.div>

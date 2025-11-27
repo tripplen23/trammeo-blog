@@ -19,8 +19,8 @@
   --color-betheflow: #f59e0b;
   
   /* Font Families */
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-space-grotesk);
   
   /* Custom Animation Durations */
   --animate-duration-300: 0.3s;

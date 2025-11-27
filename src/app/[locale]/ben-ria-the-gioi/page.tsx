@@ -4,8 +4,7 @@ import { postsByCategoryQuery } from '@/lib/queries';
 import type { Post } from '@/lib/sanity';
 import ZoomParallax from '@/components/ben-ria/ZoomParallax';
 import IntroHero from '@/components/ben-ria/IntroHero';
-import AboutExploreMore from '@/components/ben-ria/explore-more';
-import TransitionText from '@/components/ben-ria/TransitionText';
+
 import HorizontalPostsSection from '@/components/ben-ria/HorizontalPostsSection';
 import SmoothScroll from '@/components/home/SmoothScroll';
 import TransitionEffect from '@/components/shared/TransitionEffect';
@@ -35,10 +34,11 @@ export default async function BenRiaPage() {
       <TransitionEffect />
       <main>
         {/* Zoom Parallax Effect */}
-        <IntroHero /> 
+        <IntroHero />
         <ZoomParallax />
-        
+
         {/* Transition Text Section */}
+        {/* 
         <TransitionText 
           title="Bên Rìa Thế Giới"
           lines={[
@@ -47,10 +47,8 @@ export default async function BenRiaPage() {
             "...",
           ]}
         />
-        
-        {/* Explore More Section */}
-        <AboutExploreMore />
-        
+        */}
+
         {/* Horizontal Scrolling Posts */}
         <HorizontalPostsSection posts={posts} />
       </main>

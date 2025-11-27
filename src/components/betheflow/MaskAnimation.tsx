@@ -13,7 +13,7 @@ export default function MaskAnimation() {
 
   const getScrollProgress = () => {
     if (!stickyMask.current || !container.current) return 0;
-    
+
     const scrollProgress =
       stickyMask.current.offsetTop /
       (container.current.getBoundingClientRect().height - window.innerHeight);
@@ -36,7 +36,7 @@ export default function MaskAnimation() {
   }, []);
 
   return (
-    <main className="mb-[100vh]">
+    <main>
       <div ref={container} className="relative h-[300vh] bg-white">
         <div
           ref={stickyMask}

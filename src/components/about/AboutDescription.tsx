@@ -5,23 +5,21 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
 
 const phrases = [
-  'Ở Phần Lan tại thành phố Turku,',
-  'có một cô gái nhỏ người Sài Gòn',
-  'mang trong mình dòng máu Việt Nam,',
-  'tên là Trammeo.',
-  'Cô sống giữa hương cà phê, ',
-  'một đời tự do và những câu chuyện chưa kể.',
-  'Nhiều vị khách quen thường nói,',
-  'cô luôn mỉm cười với cuộc đời,',
-  'dù chỉ là trong những điều nhỏ nhất.',
+  '"Tôi hay ví cuộc sống mình như một chuyến tàu,',
+  'tới trạm dừng chân, sẽ có người lên, xuống và ở lại.',
+  'Việc của tôi là trưởng con tàu của cuộc đời mình:',
+  'tử tế, tình yêu, và biết ơn là kim chỉ nam',
+  'để những ai vô tình chạm, cảm và lắng nghe;',
+  'ít nhiều, họ cũng thấy được cuộc sống này thật đẹp,',
+  'trên chuyến tàu của tôi" - Trammeo'
 ];
 
 export default function AboutDescription() {
   return (
-    <div className="relative text-white text-[2.4vw] uppercase mt-[30vw] pb-[50vh] ml-[30vw]">
-        {phrases.map((phrase, index) => {
-          return <AnimatedText key={index}>{phrase}</AnimatedText>;
-        })}
+    <div className="relative text-white text-[4vw] md:text-[2.4vw] uppercase mt-[30vw] pb-[50vh] ml-[8vw] md:ml-[18vw]">
+      {phrases.map((phrase, index) => {
+        return <AnimatedText key={index}>{phrase}</AnimatedText>;
+      })}
     </div>
   );
 }
@@ -31,7 +29,7 @@ function AnimatedText({ children }: { children: string }) {
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    
+
     const element = text.current;
     if (!element) return;
 

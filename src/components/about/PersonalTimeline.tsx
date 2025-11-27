@@ -350,15 +350,18 @@ export default function PersonalTimeline({ items = defaultTimelineData }: Person
       ScrollTrigger.refresh();
     }, 100);
     
+    // Store container reference in a variable to use in cleanup
+    const container = containerRef.current;
+    
     // Cleanup function to ensure all ScrollTriggers are removed on unmount
     return () => {
       clearTimeout(timeoutId);
       
-      if (containerRef.current) {
+      if (container) {
         // Find and kill all ScrollTriggers within this container
         const allTriggers = ScrollTrigger.getAll();
         allTriggers.forEach((trigger) => {
-          if (containerRef.current?.contains(trigger.trigger as Node)) {
+          if (container.contains(trigger.trigger as Node)) {
             trigger.kill(true);
           }
         });

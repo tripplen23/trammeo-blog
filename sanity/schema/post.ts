@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity';
 
 const postSchema = defineType({
   name: 'post',
-  title: 'Blog Post',
+  title: 'Blog Post For Ben ria the gioi',
   type: 'document',
   fields: [
     defineField({
