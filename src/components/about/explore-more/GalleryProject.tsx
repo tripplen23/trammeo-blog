@@ -19,10 +19,10 @@ export default function GalleryProject({
       <div
         className="flex w-full justify-between items-center px-8 md:px-16 lg:px-24 py-8 md:py-12 border-t border-white/20 cursor-pointer transition-all duration-200 hover:opacity-50 group"
       >
-        <h3 className="text-xl md:text-5xl lg:text-6xl font-normal m-0 transition-all duration-400 group-hover:-translate-x-2 flex-shrink">
+        <h3 className="text-xl md:text-5xl lg:text-6xl font-normal m-0 transition-all duration-400 group-hover:-translate-x-2 shrink">
           {title}
         </h3>
-        <p className="transition-all duration-400 font-light text-sm md:text-base text-right group-hover:translate-x-2 flex-shrink-0 ml-4">
+        <p className="transition-all duration-400 font-light text-sm md:text-base text-right group-hover:translate-x-2 shrink-0 ml-4">
           {description}
         </p>
       </div>

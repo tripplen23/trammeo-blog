@@ -18,6 +18,8 @@ export default function BlackHoleEntrance({ children }: BlackHoleEntranceProps) 
     // Mark component as mounted to avoid hydration mismatch
     setIsMounted(true);
 
+    if (typeof window === 'undefined') return;
+
     // Detect user's motion preference
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
@@ -27,8 +29,15 @@ export default function BlackHoleEntrance({ children }: BlackHoleEntranceProps) 
       setPrefersReducedMotion(e.matches);
     };
 
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
+    // Use modern API if available, fallback to addEventListener
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
+    } else {
+      // Fallback for older browsers
+      mediaQuery.addListener(handleChange);
+      return () => mediaQuery.removeListener(handleChange);
+    }
   }, []);
 
   const handleEnter = () => {

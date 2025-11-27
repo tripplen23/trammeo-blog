@@ -22,8 +22,10 @@ export default function AboutStory() {
             src={'/images/image1.webp'}
             fill={true}
             alt="background image"
-            priority={true}
+            loading="lazy"
             className="object-cover"
+            quality={85}
+            sizes="40vw"
         />
         </div>
         <div className="flex h-full w-[50%] text-[1.8vw]">

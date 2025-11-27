@@ -10,7 +10,11 @@ export default function AboutIntro() {
   const introImage = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     gsap.registerPlugin(ScrollTrigger);
+
+    if (!background.current || !introImage.current) return;
 
     const timeline = gsap.timeline({
       scrollTrigger: {
@@ -24,6 +28,16 @@ export default function AboutIntro() {
     timeline
       .from(background.current, { clipPath: `inset(15%)` })
       .to(introImage.current, { height: '200px' }, 0);
+
+    // Cleanup
+    return () => {
+      timeline.kill();
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (trigger.trigger === document.documentElement) {
+          trigger.kill(true);
+        }
+      });
+    };
   }, []);
 
   return (
@@ -38,6 +52,8 @@ export default function AboutIntro() {
             alt="background image"
             priority={true}
             className="object-cover"
+            quality={85}
+            sizes="100vw"
         />
       </div>
       <div className="flex justify-center items-center relative h-screen">
@@ -53,12 +69,14 @@ export default function AboutIntro() {
             fill={true} 
             priority={true}
             className="object-cover"
+            quality={85}
+            sizes="(max-width: 768px) 350px, 350px"
           />
         </div>
         <h1
           data-scroll
           data-scroll-speed="0.7"
-          className="text-white text-[3vw] z-[3]  whitespace-nowrap"
+          className="text-white text-[3vw] z-3 whitespace-nowrap"
         >
           About me, 
         </h1>

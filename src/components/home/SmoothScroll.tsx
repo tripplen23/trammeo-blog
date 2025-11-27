@@ -38,7 +38,3 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
 
   return <>{children}</>;
 }
-
-
-
-

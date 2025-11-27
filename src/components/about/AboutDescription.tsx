@@ -1,8 +1,13 @@
 'use client';
 
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef, useMemo } from 'react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
+
+// Register GSAP ScrollTrigger plugin once
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const phrases = [
   '"Tôi hay ví cuộc sống mình như một chuyến tàu,',
@@ -15,9 +20,11 @@ const phrases = [
 ];
 
 export default function AboutDescription() {
+  const memoizedPhrases = useMemo(() => phrases, []);
+
   return (
     <div className="relative text-white text-[4vw] md:text-[2.4vw] uppercase mt-[30vw] pb-[50vh] ml-[8vw] md:ml-[18vw]">
-      {phrases.map((phrase, index) => {
+      {memoizedPhrases.map((phrase, index) => {
         return <AnimatedText key={index}>{phrase}</AnimatedText>;
       })}
     </div>
@@ -26,10 +33,10 @@ export default function AboutDescription() {
 
 function AnimatedText({ children }: { children: string }) {
   const text = useRef<HTMLParagraphElement>(null);
+  const animationRef = useRef<gsap.core.Tween | null>(null);
+  const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
 
   useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
     const element = text.current;
     if (!element) return;
 
@@ -46,19 +53,35 @@ function AnimatedText({ children }: { children: string }) {
         scrub: true,
         start: 'top bottom',
         end: 'bottom+=400px bottom',
-        markers: false, // Set to true for debugging
+        markers: false,
       },
       opacity: 1,
       x: 0,
       ease: 'power3.out',
     });
 
-    // Cleanup function to prevent memory leaks and rerendering issues
+    animationRef.current = animation;
+    
+    // Store ScrollTrigger reference
+    const triggers = ScrollTrigger.getAll();
+    scrollTriggerRef.current = triggers.find(t => t.trigger === element) || null;
+
+    // Cleanup function to prevent memory leaks
     return () => {
-      animation.kill();
+      if (animationRef.current) {
+        animationRef.current.kill();
+        animationRef.current = null;
+      }
+      
+      if (scrollTriggerRef.current) {
+        scrollTriggerRef.current.kill(true);
+        scrollTriggerRef.current = null;
+      }
+      
+      // Additional cleanup
       ScrollTrigger.getAll().forEach((trigger) => {
         if (trigger.trigger === element) {
-          trigger.kill();
+          trigger.kill(true);
         }
       });
     };

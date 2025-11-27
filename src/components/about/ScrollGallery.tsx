@@ -2,6 +2,7 @@
 
 import { motion, useSpring, type MotionValue } from 'framer-motion';
 import Image from 'next/image';
+import { useCallback, useRef } from 'react';
 
 interface GalleryItemProps {
   mousePosition: {
@@ -24,7 +25,9 @@ function GalleryItem({ mousePosition, backgroundImage, vignetteImage }: GalleryI
           alt="background"
           fill
           className="object-cover"
-          priority
+          loading="lazy"
+          quality={85}
+          sizes="100vw"
         />
       </div>
       
@@ -38,6 +41,9 @@ function GalleryItem({ mousePosition, backgroundImage, vignetteImage }: GalleryI
           alt="vignette"
           fill
           className="object-cover"
+          loading="lazy"
+          quality={85}
+          sizes="25vw"
         />
       </motion.div>
     </div>
@@ -61,14 +67,20 @@ export default function ScrollGallery({ items }: ScrollGalleryProps) {
 
   const springX = useSpring(0, spring);
   const springY = useSpring(0, spring);
+  const lastUpdateRef = useRef(0);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    const now = performance.now();
+    // Throttle to ~60fps
+    if (now - lastUpdateRef.current < 16) return;
+    lastUpdateRef.current = now;
+
     const { clientX, clientY } = e;
     const targetX = clientX - (window.innerWidth / 2) * 0.25;
     const targetY = clientY - (window.innerWidth / 2) * 0.30;
     springX.set(targetX);
     springY.set(targetY);
-  };
+  }, [springX, springY]);
 
   // Default items using available images
   const defaultItems = [

@@ -29,7 +29,9 @@ export default function AboutExploreMore() {
             alt="Final section background"
             fill
             className="object-cover"
-            priority={false}
+            loading="lazy"
+            quality={85}
+            sizes="100vw"
           />
         </div>
 

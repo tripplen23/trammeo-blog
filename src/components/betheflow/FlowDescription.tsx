@@ -15,7 +15,7 @@ export default function FlowDescription() {
     return (
         <section className="bg-white text-black py-24 px-4 md:px-8">
             {/* Top Section: Title and Text */}
-            <div className="max-w-6xl mx-auto md:ml-[0%]">
+            <div className="max-w-6xl mx-auto lg:ml-[6%] md:ml-[0%]">
                 <div className="flex flex-col md:flex-row gap-12 md:gap-24 mb-20">
                     {/* Title */}
                     <div className="md:w-1/3 flex justify-center md:justify-end">
