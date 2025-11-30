@@ -21,13 +21,13 @@ export default function IntroHero() {
         {/* Background image */}
         <div className="absolute inset-0">
           <Image
-            src="/images/co1traitim.webp"
+            src="/images/benria-bg.webp"
             fill
             alt="Bên Rìa Thế Giới Background"
             className="object-cover"
             priority
             quality={90}
-            objectPosition="center 75%"
+            objectPosition="center 65%"
           />
           {/* Dark overlay for better text readability */}
           <div className="absolute inset-0 bg-black/30" />

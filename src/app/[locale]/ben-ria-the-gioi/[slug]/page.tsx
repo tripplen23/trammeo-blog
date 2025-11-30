@@ -49,7 +49,7 @@ export default async function PostPage({ params }: PostPageProps) {
   const { slug } = await params;
   const locale = await getLocale() as 'en' | 'vi';
   const t = await getTranslations({ locale, namespace: 'common' });
-  
+
   const post = await getPost(slug);
 
   if (!post) {
@@ -116,33 +116,139 @@ export default async function PostPage({ params }: PostPageProps) {
                   ),
                 },
                 block: {
+                  h1: ({ children }) => (
+                    <h1 className="text-4xl md:text-5xl font-bold mt-16 mb-8 text-white">
+                      {children}
+                    </h1>
+                  ),
                   h2: ({ children }) => (
-                    <h2 className="text-3xl md:text-4xl font-bold mt-12 mb-6">
+                    <h2 className="text-3xl md:text-4xl font-bold mt-12 mb-6 text-white">
                       {children}
                     </h2>
                   ),
                   h3: ({ children }) => (
-                    <h3 className="text-2xl md:text-3xl font-bold mt-10 mb-5">
+                    <h3 className="text-2xl md:text-3xl font-bold mt-10 mb-5 text-white">
                       {children}
                     </h3>
                   ),
+                  h4: ({ children }) => (
+                    <h4 className="text-xl md:text-2xl font-bold mt-8 mb-4 text-white">
+                      {children}
+                    </h4>
+                  ),
+                  h5: ({ children }) => (
+                    <h5 className="text-lg md:text-xl font-bold mt-6 mb-3 text-white">
+                      {children}
+                    </h5>
+                  ),
+                  h6: ({ children }) => (
+                    <h6 className="text-base md:text-lg font-bold mt-4 mb-2 text-white">
+                      {children}
+                    </h6>
+                  ),
                   normal: ({ children }) => (
-                    <p className="text-lg md:text-xl leading-relaxed mb-6">
+                    <p className="text-lg md:text-xl leading-relaxed mb-6 text-gray-200">
                       {children}
                     </p>
                   ),
+                  blockquote: ({ children }) => (
+                    <blockquote className="border-l-4 border-benria pl-6 py-4 my-8 italic text-lg md:text-xl text-gray-300 bg-gray-800/50 rounded-r-lg">
+                      {children}
+                    </blockquote>
+                  ),
+                  callout: ({ children }) => (
+                    <div className="bg-blue-900/30 border-l-4 border-blue-400 p-6 my-8 rounded-r-lg">
+                      <p className="text-lg md:text-xl leading-relaxed text-gray-200">
+                        {children}
+                      </p>
+                    </div>
+                  ),
+                },
+                list: {
+                  bullet: ({ children }) => (
+                    <ul className="list-disc list-outside ml-10 pl-4 my-6 space-y-2 text-base md:text-lg text-gray-300">
+                      {children}
+                    </ul>
+                  ),
+                  number: ({ children }) => (
+                    <ol className="list-decimal list-outside ml-10 pl-4 my-6 space-y-2 text-base md:text-lg text-gray-300">
+                      {children}
+                    </ol>
+                  ),
+                  checkbox: ({ children }) => (
+                    <ul className="list-none ml-10 my-6 space-y-2 text-base md:text-lg text-gray-300">
+                      {children}
+                    </ul>
+                  ),
+                },
+                listItem: {
+                  bullet: ({ children }) => (
+                    <li className="leading-relaxed">{children}</li>
+                  ),
+                  number: ({ children }) => (
+                    <li className="leading-relaxed">{children}</li>
+                  ),
+                  checkbox: ({ children }) => (
+                    <li className="flex items-start gap-3">
+                      <input
+                        type="checkbox"
+                        className="mt-1.5 h-5 w-5 rounded border-gray-300"
+                        disabled
+                      />
+                      <span className="flex-1">{children}</span>
+                    </li>
+                  ),
                 },
                 marks: {
-                  link: ({ children, value }) => (
-                    <a
-                      href={value.href}
-                      className="text-benria hover:underline font-medium"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {children}
-                    </a>
+                  strong: ({ children }) => (
+                    <strong className="font-bold text-white">{children}</strong>
                   ),
+                  em: ({ children }) => (
+                    <em className="italic">{children}</em>
+                  ),
+                  underline: ({ children }) => (
+                    <span className="underline">{children}</span>
+                  ),
+                  'strike-through': ({ children }) => (
+                    <span className="line-through opacity-75">{children}</span>
+                  ),
+                  code: ({ children }) => (
+                    <code className="bg-gray-800 text-pink-400 px-2 py-1 rounded text-base font-mono">
+                      {children}
+                    </code>
+                  ),
+                  highlight: ({ children }) => (
+                    <mark className="bg-yellow-400 text-gray-900 px-1 rounded">{children}</mark>
+                  ),
+                  link: ({ children, value }) => {
+                    const target = value?.blank ? '_blank' : undefined;
+                    const rel = value?.blank ? 'noopener noreferrer' : undefined;
+                    return (
+                      <a
+                        href={value?.href}
+                        target={target}
+                        rel={rel}
+                        className="text-benria hover:underline font-medium transition-colors"
+                      >
+                        {children}
+                      </a>
+                    );
+                  },
+                  color: ({ children, value }) => {
+                    const colorMap: Record<string, string> = {
+                      gray: 'text-gray-400',
+                      brown: 'text-amber-400',
+                      orange: 'text-orange-400',
+                      yellow: 'text-yellow-400',
+                      green: 'text-green-400',
+                      blue: 'text-blue-400',
+                      purple: 'text-purple-400',
+                      pink: 'text-pink-400',
+                      red: 'text-red-400',
+                    };
+                    const colorClass = colorMap[value?.value] || '';
+                    return <span className={colorClass}>{children}</span>;
+                  },
                 },
               }}
             />
