@@ -3,28 +3,29 @@
 import React, { useLayoutEffect, useRef, useMemo } from 'react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
+import { useTranslations } from 'next-intl';
 
 // Register GSAP ScrollTrigger plugin once
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const phrases = [
-  '"Tôi hay ví cuộc sống mình như một chuyến tàu,',
-  'tới trạm dừng chân, sẽ có người lên, xuống và ở lại.',
-  'Việc của tôi là trưởng con tàu của cuộc đời mình:',
-  'tử tế, tình yêu, và biết ơn là kim chỉ nam',
-  'để những ai vô tình chạm, cảm và lắng nghe;',
-  'ít nhiều, họ cũng thấy được cuộc sống này thật đẹp,',
-  'trên chuyến tàu của tôi" - Trammeo'
-];
-
 export default function AboutDescription() {
-  const memoizedPhrases = useMemo(() => phrases, []);
+  const t = useTranslations('about.descriptionPhrases');
+
+  const phrases = useMemo(() => [
+    t('line1'),
+    t('line2'),
+    t('line3'),
+    t('line4'),
+    t('line5'),
+    t('line6'),
+    t('line7'),
+  ], [t]);
 
   return (
     <div className="relative text-white text-[4vw] md:text-[2.4vw] uppercase mt-[30vw] pb-[50vh] ml-[8vw] md:ml-[18vw]">
-      {memoizedPhrases.map((phrase, index) => {
+      {phrases.map((phrase, index) => {
         return <AnimatedText key={index}>{phrase}</AnimatedText>;
       })}
     </div>
@@ -61,7 +62,7 @@ function AnimatedText({ children }: { children: string }) {
     });
 
     animationRef.current = animation;
-    
+
     // Store ScrollTrigger reference
     const triggers = ScrollTrigger.getAll();
     scrollTriggerRef.current = triggers.find(t => t.trigger === element) || null;
@@ -72,12 +73,12 @@ function AnimatedText({ children }: { children: string }) {
         animationRef.current.kill();
         animationRef.current = null;
       }
-      
+
       if (scrollTriggerRef.current) {
         scrollTriggerRef.current.kill(true);
         scrollTriggerRef.current = null;
       }
-      
+
       // Additional cleanup
       ScrollTrigger.getAll().forEach((trigger) => {
         if (trigger.trigger === element) {

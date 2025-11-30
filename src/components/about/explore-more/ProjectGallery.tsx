@@ -1,41 +1,43 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import GalleryProject from './GalleryProject';
 
 export interface Project {
-    title: string;
-    color: string;
-    route: string;
-    description?: string;
+  title: string;
+  color: string;
+  route: string;
+  description?: string;
 }
 
 interface ProjectGalleryProps {
-    projects?: Project[];
+  projects?: Project[];
 }
 
-const defaultProjects: Project[] = [
+export default function ProjectGallery({ projects }: ProjectGalleryProps) {
+  const t = useTranslations('about.exploreMore.projects');
+
+  const defaultProjects: Project[] = [
     {
-        title: 'Bên rìa thế giới',
-        color: '#1a1a1a',
-        route: '/ben-ria-the-gioi',
-        description: 'Viết lách & suy ngẫm',
+      title: t('benRia.title'),
+      color: '#1a1a1a',
+      route: '/ben-ria-the-gioi',
+      description: t('benRia.description'),
     },
     {
-        title: '#betheflow',
-        color: '#2d2d2d',
-        route: '/betheflow',
-        description: 'Barista',
+      title: t('beTheFlow.title'),
+      color: '#2d2d2d',
+      route: '/betheflow',
+      description: t('beTheFlow.description'),
     },
-];
+  ];
 
-
-
-export default function ProjectGallery({ projects = defaultProjects }: ProjectGalleryProps) {
+  const projectsToDisplay = projects || defaultProjects;
 
   return (
     <div className="w-full max-w-5xl mx-auto">
       <div className="w-full">
-        {projects.map((project, index) => (
+        {projectsToDisplay.map((project, index) => (
           <GalleryProject
             key={index}
             title={project.title}

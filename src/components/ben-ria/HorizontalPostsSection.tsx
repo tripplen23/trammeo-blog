@@ -4,12 +4,14 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import PostCard from './PostCard';
 import type { Post } from '@/lib/sanity';
+import { useTranslations } from 'next-intl';
 
 interface HorizontalPostsSectionProps {
   posts: Post[];
 }
 
 export default function HorizontalPostsSection({ posts }: HorizontalPostsSectionProps) {
+  const t = useTranslations('benRia');
   const container = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
   const [range, setRange] = useState(['0%', '-100%']); // Initial fallback
@@ -44,7 +46,7 @@ export default function HorizontalPostsSection({ posts }: HorizontalPostsSection
   if (posts.length === 0) {
     return (
       <div className="min-h-screen bg-[#F5F5F0] flex items-center justify-center">
-        <p className="text-xl text-[#5D866C]">Chưa có bài viết nào. Hãy quay lại sau nhé!</p>
+        <p className="text-xl text-[#5D866C]">{t('latestPosts.empty')}</p>
       </div>
     );
   }
@@ -55,10 +57,10 @@ export default function HorizontalPostsSection({ posts }: HorizontalPostsSection
         <div className="w-full">
           <div className="mb-12 px-6 md:px-12">
             <h2 className="text-5xl md:text-6xl font-bold text-black mb-4">
-              Bài Viết Mới Nhất
+              {t('latestPosts.title')}
             </h2>
             <p className="text-xl text-black/70">
-              Khám phá những câu chuyện và suy nghĩ mới
+              {t('latestPosts.subtitle')}
             </p>
           </div>
 

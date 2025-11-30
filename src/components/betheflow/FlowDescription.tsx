@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { Playfair_Display } from 'next/font/google';
+import { useTranslations } from 'next-intl';
 
 const playfair = Playfair_Display({
     subsets: ['latin', 'vietnamese'],
@@ -12,6 +13,8 @@ const playfair = Playfair_Display({
 });
 
 export default function FlowDescription() {
+    const t = useTranslations('beTheFlow.flowDescription');
+
     return (
         <section className="bg-white text-black py-24 px-4 md:px-8">
             {/* Top Section: Title and Text */}
@@ -30,10 +33,10 @@ export default function FlowDescription() {
                     {/* Text Columns */}
                     <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
                         <p className="text-sm md:text-base leading-relaxed text-justify font-light opacity-80">
-                            &ldquo;Go with the flow&rdquo; là nơi khởi nguồn mọi giấc mơ dang dở, tất cả như một dòng chảy cứ mãi trôi, dịu dàng và kiên định.
+                            {t('paragraph1')}
                         </p>
                         <p className="text-sm md:text-base leading-relaxed text-justify font-light opacity-80">
-                            Và dòng chảy cuộc đời đã mang chiếc lá nhỏ đến đây, đến với hiện tại này, nơi cô học cách BeTheFlow, trở thành dòng chảy ấy: Tự do.
+                            {t('paragraph2')}
                         </p>
                     </div>
                 </div>

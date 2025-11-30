@@ -3,9 +3,11 @@
 import { useRef } from 'react';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import ProjectGallery from './ProjectGallery';
 
 export default function AboutExploreMore() {
+  const t = useTranslations('about');
   const container = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -41,7 +43,7 @@ export default function AboutExploreMore() {
         {/* Content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-[10%] z-10">
           <h2 className="text-[4vw] font-bold text-center drop-shadow-lg">
-            Khám phá thêm về Trammeo
+            {t('exploreMore.title')}
           </h2>
           <br />
           <br />

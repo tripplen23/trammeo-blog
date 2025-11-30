@@ -8,6 +8,7 @@
     "home": "Home",
     "about": "About",
     "benRia": "Bên Rìa",
+    "edgeOfTheWorld": "the edge of the world",
     "beTheFlow": "BeTheFlow",
     "language": "Language"
   },
@@ -26,17 +27,51 @@
   },
   "about": {
     "title": "About Me",
-    "description": "Personal branding and creative journey"
+    "description": "Personal branding and creative journey",
+    "descriptionPhrases": {
+      "line1": "\"I often compare my life to a train journey,",
+      "line2": "at each station, people board, depart, and stay.",
+      "line3": "My role is to be the conductor of my own life's train:",
+      "line4": "kindness, love, and gratitude are my compass",
+      "line5": "for those who happen to touch, feel, and listen;",
+      "line6": "in some way, they too may see how beautiful this life is,",
+      "line7": "aboard my train\" - Trammeo"
+    },
+    "exploreMore": {
+      "title": "Explore more about Trammeo",
+      "projects": {
+        "benRia": {
+          "title": "The edge of the world",
+          "description": "Writing & reflections"
+        },
+        "beTheFlow": {
+          "title": "#betheflow",
+          "description": "Barista"
+        }
+      }
+    }
   },
   "benRia": {
     "title": "Bên Rìa Thế Giới",
     "subtitle": "Writings and Reflections",
-    "description": "Literary thoughts and creative writing"
+    "description": "Literary thoughts and creative writing",
+    "introHero": {
+      "title": "There beats a heart"
+    },
+    "latestPosts": {
+      "title": "Latest Musings",
+      "subtitle": "Unveil new tales and wandering thoughts",
+      "empty": "No stories yet told. Please return soon."
+    }
   },
   "beTheFlow": {
     "title": "BeTheFlow",
     "subtitle": "Barista Journey",
-    "description": "Coffee culture, brewing techniques, and cafe experiences"
+    "description": "Coffee culture, brewing techniques, and cafe experiences",
+    "flowDescription": {
+      "paragraph1": "\"Go with the flow\" is where all unfinished dreams begin, everything like a stream that keeps flowing, gentle yet steadfast.",
+      "paragraph2": "And life's current has carried this small leaf here, to this present moment, where she learns to BeTheFlow, to become that very stream: Freedom."
+    }
   },
   "footer": {
     "copyright": "© {year} All rights reserved",
@@ -44,4 +79,3 @@
     "contact": "Get in touch"
   }
 }
-

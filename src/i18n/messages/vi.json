@@ -8,6 +8,7 @@
     "home": "Trang Chủ",
     "about": "Giới Thiệu",
     "benRia": "Bên Rìa",
+    "edgeOfTheWorld": "bên rìa thế giới",
     "beTheFlow": "BeTheFlow",
     "language": "Ngôn Ngữ"
   },
@@ -26,17 +27,51 @@
   },
   "about": {
     "title": "Giới Thiệu",
-    "description": "Thương hiệu cá nhân và hành trình sáng tạo"
+    "description": "Thương hiệu cá nhân và hành trình sáng tạo",
+    "descriptionPhrases": {
+      "line1": "\"Tôi hay ví cuộc sống mình như một chuyến tàu,",
+      "line2": "tới trạm dừng chân, sẽ có người lên, xuống và ở lại.",
+      "line3": "Việc của tôi là trưởng con tàu của cuộc đời mình:",
+      "line4": "tử tế, tình yêu, và biết ơn là kim chỉ nam",
+      "line5": "để những ai vô tình chạm, cảm và lắng nghe;",
+      "line6": "ít nhiều, họ cũng thấy được cuộc sống này thật đẹp,",
+      "line7": "trên chuyến tàu của tôi\" - Trammeo"
+    },
+    "exploreMore": {
+      "title": "Khám phá thêm về Trammeo",
+      "projects": {
+        "benRia": {
+          "title": "Bên rìa thế giới",
+          "description": "Viết lách & suy ngẫm"
+        },
+        "beTheFlow": {
+          "title": "#betheflow",
+          "description": "Barista"
+        }
+      }
+    }
   },
   "benRia": {
     "title": "Bên Rìa Thế Giới",
     "subtitle": "Viết Lách & Suy Ngẫm",
-    "description": "Những suy nghĩ văn học và viết lách sáng tạo"
+    "description": "Những suy nghĩ văn học và viết lách sáng tạo",
+    "introHero": {
+      "title": "Có một trái tim"
+    },
+    "latestPosts": {
+      "title": "Bài Viết Mới Nhất",
+      "subtitle": "Khám phá những câu chuyện và suy nghĩ mới",
+      "empty": "Chưa có bài viết nào. Hãy quay lại sau nhé!"
+    }
   },
   "beTheFlow": {
     "title": "BeTheFlow",
     "subtitle": "Hành Trình Barista",
-    "description": "Văn hóa cà phê, kỹ thuật pha chế và trải nghiệm quán"
+    "description": "Văn hóa cà phê, kỹ thuật pha chế và trải nghiệm quán",
+    "flowDescription": {
+      "paragraph1": "\"Go with the flow\" là nơi khởi nguồn mọi giấc mơ dang dở, tất cả như một dòng chảy cứ mãi trôi, dịu dàng và kiên định.",
+      "paragraph2": "Và dòng chảy cuộc đời đã mang chiếc lá nhỏ đến đây, đến với hiện tại này, nơi cô học cách BeTheFlow, trở thành dòng chảy ấy: Tự do."
+    }
   },
   "footer": {
     "copyright": "© {year} Bản quyền thuộc về",
@@ -44,4 +79,3 @@
     "contact": "Liên hệ"
   }
 }
-

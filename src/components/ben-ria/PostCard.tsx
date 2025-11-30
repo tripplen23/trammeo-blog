@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLocale, useTranslations } from 'next-intl';
 import { urlForImage } from '@/lib/sanity';
 import type { Post } from '@/lib/sanity';
 
@@ -11,9 +12,11 @@ interface PostCardProps {
 }
 
 export default function PostCard({ post }: PostCardProps) {
-  const title = post.title.vi;
-  const excerpt = post.excerpt?.vi || '';
-  const formattedDate = new Date(post.publishedAt).toLocaleDateString('vi', {
+  const locale = useLocale() as 'en' | 'vi';
+  const t = useTranslations('common');
+  const title = post.title[locale] || post.title.vi;
+  const excerpt = post.excerpt?.[locale] || post.excerpt?.vi || '';
+  const formattedDate = new Date(post.publishedAt).toLocaleDateString(locale, {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -49,11 +52,11 @@ export default function PostCard({ post }: PostCardProps) {
 
         <div className="space-y-2">
           <time className="text-sm text-gray-500 font-medium">{formattedDate}</time>
-          
+
           <h3 className="text-2xl font-bold text-gray-900 group-hover:text-benria transition-colors duration-300 line-clamp-2">
             {title}
           </h3>
-          
+
           {excerpt && (
             <p className="text-gray-600 line-clamp-3 leading-relaxed">{excerpt}</p>
           )}
@@ -73,7 +76,7 @@ export default function PostCard({ post }: PostCardProps) {
 
           <div className="pt-2">
             <span className="text-sm font-medium text-benria group-hover:underline">
-              Đọc Thêm →
+              {t('readMore')} →
             </span>
           </div>
         </div>
