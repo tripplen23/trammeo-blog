@@ -13,6 +13,11 @@ export const metadata: Metadata = {
   title: 'Personal Blog - Creative Journey',
   description: 'The Trammeo - Personal branding blog',
   keywords: ['blog', 'writing', 'barista', 'coffee', 'creative'],
+  icons: {
+    icon: '/images/tram-logo.webp',
+    shortcut: '/images/tram-logo.webp',
+    apple: '/images/tram-logo.webp',
+  },
 };
 
 export default function RootLayout({
