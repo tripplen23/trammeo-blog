@@ -35,9 +35,12 @@ export default function IntroHero() {
         {/* Overlay text */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <div className="text-center text-white px-6">
-            <h1 className="text-7xl md:text-8xl font-bold mb-4 drop-shadow-2xl">
-              {t('introHero.title')}
+            <h1 className="text-7xl md:text-7xl font-bold mb-2 drop-shadow-2xl">
+              {t('introHero.header')}
             </h1>
+            <h3 className="text-2xl md:text-2xl font-bold mb-4 drop-shadow-2xl">
+              {t('introHero.subheader')}
+            </h3>
           </div>
         </div>
       </motion.div>

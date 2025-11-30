@@ -56,7 +56,8 @@
     "subtitle": "Writings and Reflections",
     "description": "Literary thoughts and creative writing",
     "introHero": {
-      "title": "There beats a heart"
+      "header": "The Edge of the World",
+      "subheader": "There beats a heart"
     },
     "latestPosts": {
       "title": "Latest Musings",

@@ -66,7 +66,7 @@ export default async function PostPage({ params }: PostPageProps) {
   });
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-black">
       {/* Hero with Parallax */}
       {post.coverImage && (
         <ParallaxSection
