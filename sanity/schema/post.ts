@@ -38,6 +38,12 @@ const postSchema = defineType({
       validation: (Rule: any) => Rule.required(),
     }),
     defineField({
+      name: 'topic',
+      title: 'Topic',
+      type: 'reference',
+      to: { type: 'topic' },
+    }),
+    defineField({
       name: 'excerpt',
       title: 'Excerpt',
       type: 'object',

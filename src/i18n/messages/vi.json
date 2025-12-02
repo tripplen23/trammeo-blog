@@ -63,7 +63,17 @@
       "title": "Bài Viết Mới Nhất",
       "subtitle": "Khám phá những câu chuyện và suy nghĩ mới",
       "empty": "Chưa có bài viết nào. Hãy quay lại sau nhé!"
-    }
+    },
+    "search": {
+      "placeholder": "Tìm kiếm bài viết theo tiêu đề...",
+      "noResults": "Không tìm thấy bài viết phù hợp với '{query}'",
+      "clearSearch": "Xóa tìm kiếm"
+    },
+    "seeAll": "Xem Tất Cả",
+    "showLess": "Thu Gọn",
+    "previous": "Trước",
+    "next": "Tiếp",
+    "pageOf": "Trang {current} / {total}"
   },
   "beTheFlow": {
     "title": "BeTheFlow",

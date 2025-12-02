@@ -68,7 +68,7 @@ export default async function PostPage({ params }: PostPageProps) {
   return (
     <main className="min-h-screen bg-gradient-to-b from-amber-50/50 to-white">
       {/* Hero with Parallax */}
-      {post.coverImage && (
+      {post.coverImage?.asset && (
         <ParallaxSection
           imageSrc={urlForImage(post.coverImage).width(1920).height(1080).url()}
           imageAlt={post.coverImage.alt || title}

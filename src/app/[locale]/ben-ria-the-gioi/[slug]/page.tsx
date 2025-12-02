@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getLocale, getTranslations } from 'next-intl/server';
 import PostCard from '@/components/ben-ria/PostCard';
-import ParallaxSection from '@/components/ben-ria/ParallaxSection';
+import ParallaxSection from '@/components/shared/ParallaxSection';
 import { Link } from '@/i18n/routing';
 
 interface PostPageProps {
@@ -68,7 +68,7 @@ export default async function PostPage({ params }: PostPageProps) {
   return (
     <main className="min-h-screen bg-black">
       {/* Hero with Parallax */}
-      {post.coverImage && (
+      {post.coverImage?.asset && (
         <ParallaxSection
           imageSrc={urlForImage(post.coverImage).width(1920).height(1080).url()}
           imageAlt={post.coverImage.alt || title}

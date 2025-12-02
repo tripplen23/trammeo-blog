@@ -54,6 +54,12 @@ export interface Post {
   publishedAt: string;
   featured: boolean;
   tags?: string[];
+  topic?: {
+    title: LocalizedString;
+    slug: {
+      current: string;
+    };
+  };
 }
 
 export interface Author {

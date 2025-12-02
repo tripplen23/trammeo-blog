@@ -32,7 +32,7 @@ export default function PostCard({ post }: PostCardProps) {
         className="group cursor-pointer"
       >
         <div className="relative overflow-hidden rounded-lg aspect-[4/3] mb-4">
-          {post.coverImage && (
+          {post.coverImage?.asset && (
             <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.4 }}
@@ -46,6 +46,13 @@ export default function PostCard({ post }: PostCardProps) {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </motion.div>
+          )}
+          {!post.coverImage?.asset && (
+            <div className="w-full h-full bg-gradient-to-br from-[#E6D8C3] to-[#5D866C] flex items-center justify-center">
+              <span className="text-white text-4xl font-bold opacity-20">
+                {title?.charAt(0) || '?'}
+              </span>
+            </div>
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>

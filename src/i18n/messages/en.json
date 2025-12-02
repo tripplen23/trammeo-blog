@@ -63,7 +63,17 @@
       "title": "Latest Musings",
       "subtitle": "Unveil new tales and wandering thoughts",
       "empty": "No stories yet told. Please return soon."
-    }
+    },
+    "search": {
+      "placeholder": "Search posts by title...",
+      "noResults": "No posts found matching '{query}'",
+      "clearSearch": "Clear search"
+    },
+    "seeAll": "See All",
+    "showLess": "Show Less",
+    "previous": "Previous",
+    "next": "Next",
+    "pageOf": "Page {current} of {total}"
   },
   "beTheFlow": {
     "title": "BeTheFlow",
