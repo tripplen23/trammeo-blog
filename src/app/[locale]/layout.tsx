@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Header from '@/components/shared/Header';
 import Footer from '@/components/shared/Footer';
+import { AboutEntranceProvider } from '@/contexts/AboutEntranceContext';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -29,13 +30,15 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <div className="flex flex-col min-h-screen">
-        <Header />
-        <main className="flex-1">
-          {children}
-        </main>
-        <Footer />
-      </div>
+      <AboutEntranceProvider>
+        <div className="flex flex-col min-h-screen">
+          <Header />
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </div>
+      </AboutEntranceProvider>
     </NextIntlClientProvider>
   );
 }

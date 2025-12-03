@@ -2,7 +2,8 @@
   "home": {
     "about": "About",
     "benRia": "Bên rìa thế giới (viết)",
-    "beTheFlow": "BeTheFlow (barista)"
+    "beTheFlow": "BeTheFlow (barista)",
+    "duHanhKhongGian": "Du hành không gian"
   },
   "nav": {
     "home": "Home",
@@ -47,6 +48,10 @@
         "beTheFlow": {
           "title": "#betheflow",
           "description": "Barista"
+        },
+        "duHanhKhongGian": {
+          "title": "Space Travel",
+          "description": "Photography"
         }
       }
     }
@@ -88,5 +93,9 @@
     "copyright": "© {year} All rights reserved",
     "followMe": "Follow Me",
     "contact": "Get in touch"
+  },
+  "metadata": {
+    "title": "Space Travel | Trammeo",
+    "description": "A visual journey through space and time."
   }
 }

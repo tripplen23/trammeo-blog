@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import type { Post } from '@/lib/sanity';
 import { usePagination } from '@/hooks/usePagination';
 import { usePostFiltering } from '@/hooks/usePostFiltering';
@@ -33,6 +33,7 @@ const POSTS_PER_PAGE = 3;
 
 export default function PostsExplorer({ posts, topics }: PostsExplorerProps) {
   const t = useTranslations('benRia');
+  const locale = useLocale() as 'en' | 'vi';
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
 
@@ -89,6 +90,7 @@ export default function PostsExplorer({ posts, topics }: PostsExplorerProps) {
           selectedTopic={selectedTopic}
           onTopicChange={handleTopicChange}
           showGeneral={groupedPosts['general']?.length > 0}
+          locale={locale}
         />
       </div>
 
@@ -101,7 +103,7 @@ export default function PostsExplorer({ posts, topics }: PostsExplorerProps) {
           return (
             <TopicSection
               key={topic._id}
-              title={topic.title?.en}
+              title={topic.title?.[locale] || topic.title?.en}
               posts={topicPosts}
               displayedPosts={displayedPosts}
               isPaginationActive={pagination.isPaginationActive(topic._id)}

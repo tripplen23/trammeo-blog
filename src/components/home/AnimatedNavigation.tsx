@@ -18,6 +18,7 @@ export default function AnimatedNavigation() {
     { id: 'about', color: '#6366f1', link: '/about' },
     { id: 'benRia', color: '#5D866C', link: '/ben-ria-the-gioi' },
     { id: 'beTheFlow', color: '#f59e0b', link: '/betheflow' },
+    { id: 'duHanhKhongGian', color: '#4e3a75ff', link: '/du-hanh-khong-gian' },
   ];
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>, color: string) => {
@@ -58,7 +59,7 @@ export default function AnimatedNavigation() {
             onClick={() => handleClick(section.link)}
           >
             <p className="m-0 text-[5vw] pl-[10px] uppercase pointer-events-none select-none font-bold tracking-tight py-4">
-              {t(section.id as 'about' | 'benRia' | 'beTheFlow')}
+              {t(section.id as 'about' | 'benRia' | 'beTheFlow' | 'duHanhKhongGian')}
             </p>
           </div>
         ))}

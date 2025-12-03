@@ -3,18 +3,21 @@
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import EntryScreen from './EntryScreen';
+import { useAboutEntrance } from '@/contexts/AboutEntranceContext';
 
 interface BlackHoleEntranceProps {
   children: React.ReactNode;
 }
 
 export default function BlackHoleEntrance({ children }: BlackHoleEntranceProps) {
-  const [hasEntered, setHasEntered] = useState(false);
+  const { hasEntered, setHasEntered } = useAboutEntrance();
   const [isAnimating, setIsAnimating] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    // Reset hasEntered when component mounts (navigating to about page)
+    setHasEntered(false);
     // Mark component as mounted to avoid hydration mismatch
     setIsMounted(true);
 
@@ -47,7 +50,7 @@ export default function BlackHoleEntrance({ children }: BlackHoleEntranceProps) 
   };
 
   const onAnimationComplete = () => {
-    // Mark as entered and reset animation state
+    // Mark as entered and reset animation state (updates context)
     setHasEntered(true);
     setIsAnimating(false);
   };

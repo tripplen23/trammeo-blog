@@ -30,6 +30,12 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
       route: '/betheflow',
       description: t('beTheFlow.description'),
     },
+    {
+      title: t('duHanhKhongGian.title'),
+      color: '#2d2d2d',
+      route: '/du-hanh-khong-gian',
+      description: t('duHanhKhongGian.description'),
+    },
   ];
 
   const projectsToDisplay = projects || defaultProjects;

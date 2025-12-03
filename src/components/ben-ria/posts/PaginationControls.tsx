@@ -11,8 +11,8 @@ interface PaginationControlsProps {
 }
 
 export default function PaginationControls({
-  currentPage,
-  totalPages,
+  currentPage: _currentPage,
+  totalPages: _totalPages,
   canGoPrevious,
   canGoNext,
   onPrevious,
@@ -21,6 +21,9 @@ export default function PaginationControls({
   nextLabel,
   pageLabel,
 }: PaginationControlsProps) {
+  // Note: currentPage and totalPages are available via props if needed for future enhancements
+  void _currentPage;
+  void _totalPages;
   return (
     <div className="flex items-center justify-center gap-4 mb-6">
       <button

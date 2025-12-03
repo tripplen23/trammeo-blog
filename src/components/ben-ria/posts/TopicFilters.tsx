@@ -11,13 +11,15 @@ interface TopicFiltersProps {
   selectedTopic: string | null;
   onTopicChange: (topicId: string | null) => void;
   showGeneral: boolean;
+  locale: 'en' | 'vi';
 }
 
 export default function TopicFilters({ 
   topics, 
   selectedTopic, 
   onTopicChange,
-  showGeneral 
+  showGeneral,
+  locale
 }: TopicFiltersProps) {
   return (
     <div className="flex flex-wrap gap-4">
@@ -42,7 +44,7 @@ export default function TopicFilters({
               : 'bg-transparent text-black border-black/20 hover:border-black'
           }`}
         >
-          {topic.title?.en || 'Topic'}
+          {topic.title?.[locale] || topic.title?.en || 'Topic'}
         </button>
       ))}
       

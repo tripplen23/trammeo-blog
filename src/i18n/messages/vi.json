@@ -2,7 +2,8 @@
   "home": {
     "about": "Giới Thiệu",
     "benRia": "Bên rìa thế giới (viết)",
-    "beTheFlow": "BeTheFlow (barista)"
+    "beTheFlow": "BeTheFlow (barista)",
+    "duHanhKhongGian": "Du hành không gian"
   },
   "nav": {
     "home": "Trang Chủ",
@@ -47,6 +48,10 @@
         "beTheFlow": {
           "title": "#betheflow",
           "description": "Barista"
+        },
+        "duHanhKhongGian": {
+          "title": "Du hành không gian",
+          "description": "Nhiếp ảnh"
         }
       }
     }
@@ -88,5 +93,9 @@
     "copyright": "© {year} Bản quyền thuộc về",
     "followMe": "Theo Dõi",
     "contact": "Liên hệ"
+  },
+  "metadata": {
+    "title": "Du hành không gian | Trammeo",
+    "description": "Một hành trình hình ảnh xuyên không gian và thời gian."
   }
 }

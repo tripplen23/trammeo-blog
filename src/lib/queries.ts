@@ -114,6 +114,21 @@ export const authorsQuery = groq`
 }
 `;
 
+// Get space travel photos
+export const spaceTravelPhotosQuery = groq`
+  *[_type == "spaceTravelPhoto"] | order(date desc) {
+    _id,
+    image {
+      asset,
+      hotspot,
+      crop
+    },
+    caption,
+    location,
+    date
+  }
+`;
+
 
 
 
