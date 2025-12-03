@@ -32,16 +32,9 @@ export default function BlackHoleEntrance({ children }: BlackHoleEntranceProps) 
       setPrefersReducedMotion(e.matches);
     };
 
-    // Use modern API if available, fallback to addEventListener
-    if (mediaQuery.addEventListener) {
-      mediaQuery.addEventListener('change', handleChange);
-      return () => mediaQuery.removeEventListener('change', handleChange);
-    } else {
-      // Fallback for older browsers
-      mediaQuery.addListener(handleChange);
-      return () => mediaQuery.removeListener(handleChange);
-    }
-  }, []);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, [setHasEntered]);
 
   const handleEnter = () => {
     // Prevent multiple clicks during animation
