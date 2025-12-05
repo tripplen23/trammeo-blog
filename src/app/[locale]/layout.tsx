@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -6,6 +7,8 @@ import { routing } from '@/i18n/routing';
 import Header from '@/components/shared/Header';
 import Footer from '@/components/shared/Footer';
 import { AboutEntranceProvider } from '@/contexts/AboutEntranceContext';
+import { LoadingProvider } from '@/contexts/LoadingContext';
+import { RouteChangeHandler, LoadingScreen } from '@/components/loading';
 
 // Pages that should not show footer (for infinite scroll experience)
 const PAGES_WITHOUT_FOOTER = ['/nguoi-di-tren-may'];
@@ -43,15 +46,21 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <AboutEntranceProvider>
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <main className="flex-1">
-            {children}
-          </main>
-          {!shouldHideFooter && <Footer />}
-        </div>
-      </AboutEntranceProvider>
+      <LoadingProvider>
+        <Suspense fallback={null}>
+          <RouteChangeHandler />
+        </Suspense>
+        <LoadingScreen />
+        <AboutEntranceProvider>
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            <main className="flex-1">
+              {children}
+            </main>
+            {!shouldHideFooter && <Footer />}
+          </div>
+        </AboutEntranceProvider>
+      </LoadingProvider>
     </NextIntlClientProvider>
   );
 }

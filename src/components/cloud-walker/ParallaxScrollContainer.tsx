@@ -84,6 +84,10 @@ export default function ParallaxScrollContainer({
   // So when scrolling down, videos from above appear
   const [leftInitialOffset, setLeftInitialOffset] = useState(0);
   const [rightInitialOffset, setRightInitialOffset] = useState(0);
+  
+  // Touch tracking for tablet/touch devices
+  const touchStartY = useRef<number | null>(null);
+  const lastTouchY = useRef<number | null>(null);
 
   // Smooth spring animation for scroll
   const smoothScroll = useSpring(scrollPosition, {
@@ -169,17 +173,52 @@ export default function ParallaxScrollContainer({
     [isDesktop, maxScroll]
   );
 
-  // Attach wheel event listener
+  // Handle touch events for tablet/touch devices (iPad, etc.)
+  const handleTouchStart = useCallback((e: TouchEvent) => {
+    if (!isDesktop) return;
+    touchStartY.current = e.touches[0].clientY;
+    lastTouchY.current = e.touches[0].clientY;
+  }, [isDesktop]);
+
+  const handleTouchMove = useCallback((e: TouchEvent) => {
+    if (!isDesktop || lastTouchY.current === null) return;
+    
+    e.preventDefault(); // Prevent default scroll
+    
+    const currentY = e.touches[0].clientY;
+    const delta = lastTouchY.current - currentY; // Positive = scroll down
+    const sensitivity = 1.5;
+    
+    setScrollPosition((prev) => {
+      const newPosition = prev + delta * sensitivity;
+      return Math.max(0, Math.min(newPosition, maxScroll));
+    });
+    
+    lastTouchY.current = currentY;
+  }, [isDesktop, maxScroll]);
+
+  const handleTouchEnd = useCallback(() => {
+    touchStartY.current = null;
+    lastTouchY.current = null;
+  }, []);
+
+  // Attach wheel and touch event listeners
   useEffect(() => {
     const container = containerRef.current;
     if (!container || !isDesktop) return;
 
     container.addEventListener('wheel', handleWheel, { passive: false });
+    container.addEventListener('touchstart', handleTouchStart, { passive: true });
+    container.addEventListener('touchmove', handleTouchMove, { passive: false });
+    container.addEventListener('touchend', handleTouchEnd, { passive: true });
 
     return () => {
       container.removeEventListener('wheel', handleWheel);
+      container.removeEventListener('touchstart', handleTouchStart);
+      container.removeEventListener('touchmove', handleTouchMove);
+      container.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [handleWheel, isDesktop]);
+  }, [handleWheel, handleTouchStart, handleTouchMove, handleTouchEnd, isDesktop]);
 
   // Update spring target when scrollPosition changes
   useEffect(() => {

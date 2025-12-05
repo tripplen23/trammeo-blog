@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X, AlertCircle } from 'lucide-react';
 import type { VideoCardVideo } from './VideoCard';
 
 interface VideoModalProps {
@@ -13,6 +13,8 @@ interface VideoModalProps {
 
 export default function VideoModal({ video, isOpen, onClose }: VideoModalProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoError, setVideoError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Handle Escape key to close modal
   const handleKeyDown = useCallback(
@@ -38,13 +40,29 @@ export default function VideoModal({ video, isOpen, onClose }: VideoModalProps) 
     };
   }, [isOpen, handleKeyDown]);
 
-  // Stop video when modal closes
+  // Reset state and stop video when modal closes
   useEffect(() => {
     if (!isOpen && videoRef.current) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
     }
+    // Reset error and loading state when modal opens/closes
+    if (isOpen) {
+      setVideoError(false);
+      setIsLoading(true);
+    }
   }, [isOpen]);
+
+  // Handle video error
+  const handleVideoError = useCallback(() => {
+    setVideoError(true);
+    setIsLoading(false);
+  }, []);
+
+  // Handle video loaded
+  const handleVideoLoaded = useCallback(() => {
+    setIsLoading(false);
+  }, []);
 
   // Handle backdrop click
   const handleBackdropClick = useCallback(
@@ -94,16 +112,36 @@ export default function VideoModal({ video, isOpen, onClose }: VideoModalProps) 
 
             {/* Video container */}
             <div className="relative bg-black rounded-lg overflow-hidden shadow-2xl">
-              <video
-                ref={videoRef}
-                src={video.videoUrl}
-                controls
-                autoPlay
-                className="w-full aspect-video"
-                data-testid="video-modal-player"
-              >
-                Your browser does not support the video tag.
-              </video>
+              {/* Loading indicator */}
+              {isLoading && !videoError && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black z-10">
+                  <div className="w-12 h-12 border-4 border-white/20 border-t-white rounded-full animate-spin" />
+                </div>
+              )}
+
+              {/* Error state */}
+              {videoError ? (
+                <div className="w-full aspect-video flex flex-col items-center justify-center bg-gray-900 text-white">
+                  <AlertCircle size={48} className="text-red-400 mb-4" />
+                  <p className="text-lg font-medium">Video không thể phát</p>
+                  <p className="text-sm text-gray-400 mt-2">Vui lòng thử lại sau</p>
+                </div>
+              ) : (
+                <video
+                  ref={videoRef}
+                  src={video.videoUrl}
+                  controls
+                  playsInline
+                  preload="auto"
+                  className="w-full aspect-video"
+                  data-testid="video-modal-player"
+                  onError={handleVideoError}
+                  onLoadedData={handleVideoLoaded}
+                  onCanPlay={handleVideoLoaded}
+                >
+                  Your browser does not support the video tag.
+                </video>
+              )}
 
               {/* Video info */}
               <div className="p-4 bg-gradient-to-t from-black/90 to-transparent">
