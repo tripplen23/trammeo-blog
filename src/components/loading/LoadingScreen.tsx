@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { HourglassAnimation } from './HourglassAnimation';
 import { PsychedelicSwirl } from './PsychedelicSwirl';
 import { QuoteDisplay } from './QuoteDisplay';
@@ -19,7 +20,7 @@ const COLORS = {
 };
 
 interface LoadingScreenProps {
-  quote?: string; // Default: "Thời gian là ảo ảnh"
+  quote?: string; // Override translation if provided
 }
 
 // Variants for different enter/exit durations
@@ -35,10 +36,14 @@ const overlayVariants = {
   },
 };
 
-export function LoadingScreen({ quote = 'Thời gian là ảo ảnh' }: LoadingScreenProps) {
+export function LoadingScreen({ quote }: LoadingScreenProps) {
   const { isLoading } = useLoading();
+  const t = useTranslations('loading');
   const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
   const isMobile = useIsMobile();
+  
+  // Use provided quote or fall back to translation
+  const displayQuote = quote || t('quote');
 
   // Responsive sizing: scale down on mobile (< 768px)
   const hourglassSize = isMobile ? 80 : 120;
@@ -111,7 +116,7 @@ export function LoadingScreen({ quote = 'Thời gian là ảo ảnh' }: LoadingS
 
           {/* Quote below hourglass */}
           <QuoteDisplay
-            text={quote}
+            text={displayQuote}
             reducedMotion={reducedMotion}
           />
         </motion.div>

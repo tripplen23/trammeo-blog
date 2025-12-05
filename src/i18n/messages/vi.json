@@ -3,15 +3,21 @@
     "about": "Giới Thiệu",
     "benRia": "Bên rìa thế giới (viết)",
     "beTheFlow": "BeTheFlow (barista)",
-    "duHanhKhongGian": "Du hành không gian"
+    "nguoiDiTrenMay": "Người đi trên mây (video)",
+    "duHanhKhongGian": "Du hành không gian (nhiếp ảnh)"
   },
   "nav": {
     "home": "Trang Chủ",
     "about": "Giới Thiệu",
     "benRia": "Bên Rìa",
     "edgeOfTheWorld": "bên rìa thế giới",
+    "spaceTravel": "du hành không gian",
+    "cloudWalker": "người đi trên mây",
     "beTheFlow": "BeTheFlow",
     "language": "Ngôn Ngữ"
+  },
+  "loading": {
+    "quote": "Thời gian là ảo ảnh"
   },
   "common": {
     "readMore": "Đọc Thêm",

@@ -46,11 +46,13 @@ export default function Header() {
   const navLinks = [
     { href: '/about', label: t('about').toLowerCase() },
     { href: '/ben-ria-the-gioi', label: t('edgeOfTheWorld') },
-    { href: '/du-hanh-khong-gian', label: 'du hành không gian' },
-    { href: '/nguoi-di-tren-may', label: 'người đi trên mây' },
+    { href: '/du-hanh-khong-gian', label: t('spaceTravel') },
+    { href: '/nguoi-di-tren-may', label: t('cloudWalker') },
     { href: '/betheflow', label: '#betheflow' },
   ];
 
+  // Check if we're on home page - hide full header
+  const isHomePage = pathname === '/';
   // Check if we're on a white-background page (about)
   const isWhitePage = pathname === '/about';
   // Check if we're on space travel page (galaxy background)
@@ -59,6 +61,11 @@ export default function Header() {
   const isCloudWalkerPage = pathname === '/nguoi-di-tren-may';
   // Only turn header white on scroll for non-special pages
   const shouldBeBlack = (mounted && isScrolled && !isCloudWalkerPage) || isWhitePage;
+
+  // Hide header on home page (has its own minimal header)
+  if (isHomePage) {
+    return null;
+  }
 
   // Hide header on about page until user has entered through BlackHoleEntrance
   const isAboutPage = pathname === '/about';

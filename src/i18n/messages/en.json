@@ -1,17 +1,23 @@
 {
   "home": {
     "about": "About",
-    "benRia": "Bên rìa thế giới (viết)",
+    "benRia": "The Edge of the World (writing)",
     "beTheFlow": "BeTheFlow (barista)",
-    "duHanhKhongGian": "Du hành không gian"
+    "nguoiDiTrenMay": "Cloud Walker (video)",
+    "duHanhKhongGian": "Space Travel (photography)"
   },
   "nav": {
     "home": "Home",
     "about": "About",
     "benRia": "Bên Rìa",
     "edgeOfTheWorld": "the edge of the world",
+    "spaceTravel": "space travel",
+    "cloudWalker": "cloud walker",
     "beTheFlow": "BeTheFlow",
     "language": "Language"
+  },
+  "loading": {
+    "quote": "Time is an illusion"
   },
   "common": {
     "readMore": "Read More",
