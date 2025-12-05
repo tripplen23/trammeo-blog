@@ -14,15 +14,15 @@ export default function LanguageSwitcher() {
   };
 
   return (
-    <div className="flex items-center gap-2 text-sm">
+    <div className="flex items-center gap-1 text-sm bg-white/10 backdrop-blur-sm rounded-full p-1">
       {routing.locales.map((loc) => (
         <button
           key={loc}
           onClick={() => handleLanguageChange(loc)}
-          className={`px-2 py-1 rounded transition-colors ${
+          className={`px-3 py-1.5 rounded-full font-medium cursor-pointer transition-all duration-200 ${
             locale === loc
-              ? 'bg-black text-white'
-              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              ? 'bg-white text-black shadow-md'
+              : 'text-white/70 hover:text-white hover:bg-white/20'
           }`}
         >
           {loc.toUpperCase()}

@@ -31,6 +31,12 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
       description: t('beTheFlow.description'),
     },
     {
+      title: t('nguoiDiTrenMay.title'),
+      color: '#87CEEB',
+      route: '/nguoi-di-tren-may',
+      description: t('nguoiDiTrenMay.description'),
+    },
+    {
       title: t('duHanhKhongGian.title'),
       color: '#2d2d2d',
       route: '/du-hanh-khong-gian',

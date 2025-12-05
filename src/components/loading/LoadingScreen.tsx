@@ -46,8 +46,8 @@ export function LoadingScreen({ quote }: LoadingScreenProps) {
   const displayQuote = quote || t('quote');
 
   // Responsive sizing: scale down on mobile (< 768px)
-  const hourglassSize = isMobile ? 80 : 120;
-  const swirlSize = isMobile ? 160 : 240;
+  const hourglassSize = isMobile ? 50 : 70;
+  const swirlSize = isMobile ? 100 : 140;
 
   return (
     <AnimatePresence mode="wait">

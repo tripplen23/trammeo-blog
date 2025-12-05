@@ -39,10 +39,10 @@ export function QuoteDisplay({
       }
       style={{
         color: COLORS.QUOTE_COLOR,
-        fontSize: '1.25rem',
+        fontSize: '2.25rem',
         fontStyle: 'italic',
         textAlign: 'center',
-        marginTop: '1.5rem',
+        marginTop: '2.5rem',
         letterSpacing: '0.05em',
         textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
       }}
