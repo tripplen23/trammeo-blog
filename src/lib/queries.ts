@@ -129,6 +129,18 @@ export const spaceTravelPhotosQuery = groq`
   }
 `;
 
-
-
-
+// Get cloud walker videos
+export const cloudWalkerVideosQuery = groq`
+  *[_type == "cloudWalkerVideo" && !(_id in path("drafts.**"))] | order(publishedAt desc) {
+    _id,
+    title,
+    description,
+    "videoUrl": videoFile.asset->url,
+    thumbnail {
+      asset,
+      hotspot,
+      crop
+    },
+    publishedAt
+  }
+`;

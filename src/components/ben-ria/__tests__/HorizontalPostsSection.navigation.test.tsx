@@ -19,6 +19,7 @@ vi.mock('next-intl', () => ({
     }
     return translations[key] || key;
   },
+  useLocale: () => 'en',
 }));
 
 // Mock PostCard component

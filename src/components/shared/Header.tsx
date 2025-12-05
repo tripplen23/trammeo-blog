@@ -28,6 +28,7 @@ export default function Header() {
     { href: '/about', label: t('about').toLowerCase() },
     { href: '/ben-ria-the-gioi', label: t('edgeOfTheWorld') },
     { href: '/du-hanh-khong-gian', label: 'du hành không gian' },
+    { href: '/nguoi-di-tren-may', label: 'người đi trên mây' },
     { href: '/betheflow', label: '#betheflow' },
   ];
 
@@ -35,7 +36,10 @@ export default function Header() {
   const isWhitePage = pathname === '/about';
   // Check if we're on space travel page (galaxy background)
   const isSpacePage = pathname === '/du-hanh-khong-gian';
-  const shouldBeBlack = (mounted && isScrolled) || isWhitePage;
+  // Check if we're on cloud walker page (custom scroll, always dark header)
+  const isCloudWalkerPage = pathname === '/nguoi-di-tren-may';
+  // Only turn header white on scroll for non-special pages
+  const shouldBeBlack = (mounted && isScrolled && !isCloudWalkerPage) || isWhitePage;
 
   // Hide header on about page until user has entered through BlackHoleEntrance
   const isAboutPage = pathname === '/about';

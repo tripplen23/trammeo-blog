@@ -97,5 +97,15 @@
   "metadata": {
     "title": "Space Travel | Trammeo",
     "description": "A visual journey through space and time."
+  },
+  "cloudWalker": {
+    "title": "Cloud Walker",
+    "subtitle": "Video Gallery",
+    "description": "A video collection with unique parallax scroll effect",
+    "emptyState": "No videos yet. Please check back later!",
+    "metadata": {
+      "title": "Cloud Walker | Trammeo",
+      "description": "A video collection with unique parallax scroll effect, inspired by analog film aesthetic."
+    }
   }
 }

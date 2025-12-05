@@ -97,5 +97,15 @@
   "metadata": {
     "title": "Du hành không gian | Trammeo",
     "description": "Một hành trình hình ảnh xuyên không gian và thời gian."
+  },
+  "cloudWalker": {
+    "title": "Người Đi Trên Mây",
+    "subtitle": "Video Gallery",
+    "description": "Bộ sưu tập video với hiệu ứng parallax scroll độc đáo",
+    "emptyState": "Chưa có video nào. Hãy quay lại sau nhé!",
+    "metadata": {
+      "title": "Người đi trên mây | Trammeo",
+      "description": "Bộ sưu tập video với hiệu ứng parallax scroll độc đáo, lấy cảm hứng từ phong cách analog film."
+    }
   }
 }
