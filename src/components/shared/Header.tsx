@@ -46,9 +46,9 @@ export default function Header() {
   const navLinks = [
     { href: '/about', label: t('about').toLowerCase() },
     { href: '/ben-ria-the-gioi', label: t('edgeOfTheWorld') },
-    { href: '/du-hanh-khong-gian', label: t('spaceTravel') },
-    { href: '/nguoi-di-tren-may', label: t('cloudWalker') },
     { href: '/betheflow', label: '#betheflow' },
+    { href: '/nguoi-di-tren-may', label: t('cloudWalker') },
+    { href: '/du-hanh-khong-gian', label: t('spaceTravel') },
   ];
 
   // Check if we're on home page - hide full header
