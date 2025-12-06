@@ -132,19 +132,13 @@ export default function CloudWalkerGallery({ videos, isLoading = false }: CloudW
             <EmptyState />
           </motion.div>
         ) : (
-          <motion.div
-            key="content"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
+          <div key="content">
             <ParallaxScrollContainer
               leftColumnVideos={leftColumnVideos}
               rightColumnVideos={rightColumnVideos}
               onVideoSelect={handleVideoSelect}
             />
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
 

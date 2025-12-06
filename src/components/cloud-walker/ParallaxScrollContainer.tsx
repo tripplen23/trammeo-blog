@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useEffect, useCallback } from 'react';
+import { useRef, useState, useEffect, useLayoutEffect, useCallback } from 'react';
 import { motion, useSpring, useTransform } from 'framer-motion';
 import VideoCard, { type VideoCardVideo } from './VideoCard';
 import { useIsDesktop } from '@/hooks/useMediaQuery';
@@ -79,6 +79,12 @@ export default function ParallaxScrollContainer({
   const [scrollPosition, setScrollPosition] = useState(0);
   const [maxScroll, setMaxScroll] = useState(1000);
   
+  // Track if component is mounted (to avoid SSR/hydration mismatch)
+  const [isMounted, setIsMounted] = useState(false);
+  
+  // Track if initial offsets have been calculated - prevents flash on mount
+  const [isReady, setIsReady] = useState(false);
+  
   // Initial offsets for columns - key fix for UX
   // Left column starts with negative offset (positioned above viewport)
   // So when scrolling down, videos from above appear
@@ -107,7 +113,8 @@ export default function ParallaxScrollContainer({
 
   // Calculate initial offsets and max scroll based on content height
   // Key constraint: both columns must always have videos visible in viewport
-  useEffect(() => {
+  // Using useLayoutEffect to calculate BEFORE browser paints - prevents flash
+  useLayoutEffect(() => {
     const calculateOffsetsAndMaxScroll = () => {
       if (leftColumnRef.current && rightColumnRef.current) {
         const leftHeight = leftColumnRef.current.scrollHeight;
@@ -139,6 +146,9 @@ export default function ParallaxScrollContainer({
         // Use the smaller of the two to ensure both columns always have content
         const safeMaxScroll = Math.min(maxScrollLeft, maxScrollRight) * 0.7;
         setMaxScroll(Math.max(safeMaxScroll, 300));
+        
+        // Mark as ready after first calculation
+        setIsReady(true);
       }
     };
 
@@ -153,6 +163,18 @@ export default function ParallaxScrollContainer({
       clearTimeout(timer);
     };
   }, [leftColumnVideos.length, rightColumnVideos.length]);
+
+  // Mark as mounted after first render
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // For mobile, set ready immediately since no offset calculation needed
+  useEffect(() => {
+    if (isMounted && !isDesktop) {
+      setIsReady(true);
+    }
+  }, [isDesktop, isMounted]);
 
   // Handle wheel event - prevent default scroll, use custom animation
   const handleWheel = useCallback(
@@ -228,12 +250,20 @@ export default function ParallaxScrollContainer({
   // Combine all videos for mobile single column view
   const allVideos = [...leftColumnVideos, ...rightColumnVideos];
 
+  // Don't render anything until mounted to prevent SSR/hydration flash
+  // This prevents showing mobile view briefly before switching to desktop
+  if (!isMounted) {
+    return (
+      <div className="fixed inset-0 top-[72px] bg-gradient-to-b from-gray-950 via-black to-gray-950" />
+    );
+  }
+
   // Mobile: Film strip themed single column with sprocket holes
   if (!isDesktop) {
     return (
       <div
         ref={containerRef}
-        className="relative min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 overflow-y-auto"
+        className={`relative min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 overflow-y-auto transition-opacity duration-300 ${isReady ? 'opacity-100' : 'opacity-0'}`}
         data-testid="parallax-container"
         data-mobile="true"
       >
@@ -287,7 +317,7 @@ export default function ParallaxScrollContainer({
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 top-[72px] bg-gradient-to-b from-gray-950 via-black to-gray-950 overflow-hidden"
+      className={`fixed inset-0 top-[72px] bg-gradient-to-b from-gray-950 via-black to-gray-950 overflow-hidden transition-opacity duration-300 ${isReady ? 'opacity-100' : 'opacity-0'}`}
       data-testid="parallax-container"
       data-mobile="false"
       style={{ cursor: 'grab' }}

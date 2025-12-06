@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import Image from 'next/image';
 import { urlForImage } from '@/lib/sanity';
 import { motion } from 'framer-motion';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 interface SanityImage {
     _type: 'image';
@@ -28,20 +29,24 @@ interface SpaceTravelGalleryProps {
 export default function SpaceTravelGallery({ initialPhotos }: SpaceTravelGalleryProps) {
     const [photos] = useState<Photo[]>(initialPhotos);
     const [activeId, setActiveId] = useState<string | null>(null);
+    
+    // Mobile detection for responsive layout
+    const isMobile = useMediaQuery('(max-width: 767px)');
+    const photosPerRow = isMobile ? 1 : 4;
 
     // Handle click to zoom/activate
     const handlePhotoClick = (id: string) => {
         setActiveId(activeId === id ? null : id);
     };
 
-    // Group photos into rows of 4
+    // Group photos into rows based on viewport (1 on mobile, 4 on desktop)
     const rows = useMemo(() => {
         const result: Photo[][] = [];
-        for (let i = 0; i < photos.length; i += 4) {
-            result.push(photos.slice(i, i + 4));
+        for (let i = 0; i < photos.length; i += photosPerRow) {
+            result.push(photos.slice(i, i + photosPerRow));
         }
         return result;
-    }, [photos]);
+    }, [photos, photosPerRow]);
 
     // Find which row contains the active photo
     const activeRowIndex = useMemo(() => {
@@ -100,7 +105,11 @@ export default function SpaceTravelGallery({ initialPhotos }: SpaceTravelGallery
                     return (
                         <div 
                             key={rowIndex} 
-                            className="flex items-start gap-3 md:gap-4 lg:gap-5"
+                            className={`flex items-start ${
+                                isMobile 
+                                    ? 'flex-col gap-6 px-2' 
+                                    : 'flex-row gap-3 md:gap-4 lg:gap-5'
+                            }`}
                         >
                             {row.map((photo) => {
                                 const isActive = activeId === photo._id;
@@ -109,25 +118,33 @@ export default function SpaceTravelGallery({ initialPhotos }: SpaceTravelGallery
 
                                 const imageUrl = photo.image ? urlForImage(photo.image).url() : '';
 
+                                // Mobile-specific styling: full width, no flex expansion
+                                const mobileStyle = isMobile ? {
+                                    flex: 'none' as const,
+                                    width: '100%',
+                                    maxWidth: 'calc(100vw - 2rem)',
+                                    margin: isActive ? '0 auto' : undefined,
+                                } : {
+                                    flex: isActive ? 2 : isInactiveInRow ? 0.6 : 1,
+                                    minWidth: isInactiveInRow ? '80px' : '0',
+                                    maxWidth: isActive ? '500px' : 'none',
+                                };
+
                                 return (
                                     <motion.div
                                         key={photo._id}
                                         layout
                                         initial={false}
                                         animate={{
-                                            flex: isActive ? 2 : isInactiveInRow ? 0.6 : 1,
+                                            flex: isMobile ? undefined : (isActive ? 2 : isInactiveInRow ? 0.6 : 1),
                                             opacity: shouldDim ? 0.4 : 1,
                                         }}
                                         transition={{ 
                                             duration: 0.4, 
                                             ease: [0.4, 0, 0.2, 1]
                                         }}
-                                        className="relative cursor-pointer group"
-                                        style={{ 
-                                            flex: isActive ? 2 : isInactiveInRow ? 0.6 : 1,
-                                            minWidth: isInactiveInRow ? '80px' : '0',
-                                            maxWidth: isActive ? '500px' : 'none'
-                                        }}
+                                        className={`relative cursor-pointer group ${isMobile ? 'w-full' : ''}`}
+                                        style={mobileStyle}
                                         onClick={() => handlePhotoClick(photo._id)}
                                     >
                                         {/* Polaroid Frame */}
@@ -151,19 +168,24 @@ export default function SpaceTravelGallery({ initialPhotos }: SpaceTravelGallery
 
                                             {/* Caption area */}
                                             <motion.div 
-                                                className="px-3 py-3 md:py-4"
+                                                className="px-3 py-3 md:py-4 overflow-hidden"
                                                 animate={{
                                                     opacity: isInactiveInRow ? 0 : 1,
                                                 }}
                                                 transition={{ duration: 0.2 }}
                                             >
                                                 <h3 
-                                                    className={`text-gray-700 transition-all duration-300 ${
+                                                    className={`text-gray-700 transition-all duration-300 overflow-hidden ${
                                                         isActive 
-                                                            ? 'text-sm md:text-base lg:text-lg' 
+                                                            ? 'text-sm md:text-base lg:text-lg break-words' 
                                                             : 'text-[10px] md:text-xs line-clamp-2'
                                                     }`} 
-                                                    style={{ fontFamily: "var(--font-pacifico), cursive" }}
+                                                    style={{ 
+                                                        fontFamily: "var(--font-pacifico), cursive",
+                                                        wordBreak: 'break-word',
+                                                        overflowWrap: 'break-word',
+                                                        maxWidth: '100%'
+                                                    }}
                                                 >
                                                     {photo.caption}
                                                 </h3>
@@ -174,19 +196,24 @@ export default function SpaceTravelGallery({ initialPhotos }: SpaceTravelGallery
                                                         initial={{ opacity: 0, y: 10 }}
                                                         animate={{ opacity: 1, y: 0 }}
                                                         transition={{ delay: 0.1 }}
-                                                        className="mt-2 flex justify-between items-center text-gray-500"
+                                                        className="mt-2 flex flex-wrap justify-between items-center text-gray-500 gap-1 overflow-hidden"
+                                                        style={{ maxWidth: '100%' }}
                                                     >
                                                         {photo.location && (
                                                             <p 
-                                                                className="text-xs md:text-sm"
-                                                                style={{ fontFamily: "var(--font-pacifico), cursive" }}
+                                                                className="text-[10px] md:text-xs lg:text-sm truncate max-w-[60%] md:max-w-none"
+                                                                style={{ 
+                                                                    fontFamily: "var(--font-pacifico), cursive",
+                                                                    overflow: 'hidden',
+                                                                    textOverflow: 'ellipsis'
+                                                                }}
                                                             >
                                                                 {photo.location}
                                                             </p>
                                                         )}
                                                         {photo.date && (
                                                             <p 
-                                                                className="text-xs"
+                                                                className="text-[10px] md:text-xs flex-shrink-0"
                                                                 style={{ fontFamily: "var(--font-pacifico), cursive" }}
                                                             >
                                                                 {new Date(photo.date).toLocaleDateString('vi-VN', {
