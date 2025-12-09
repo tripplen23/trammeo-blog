@@ -29,8 +29,8 @@ export default defineType({
             type: 'string',
             options: {
                 list: [
-                    { title: 'Little life at Art', value: 'littleLifeAtArt' },
-                    { title: 'The home cafe', value: 'theHomeCafe' },
+                    { title: 'Little life in Art', value: 'littleLifeAtArt' },
+                    { title: 'Nhà cafe', value: 'theHomeCafe' },
                 ],
                 layout: 'radio',
             },
@@ -75,8 +75,8 @@ export default defineType({
         },
         prepare({ title, subtitle, media }) {
             const categoryLabels: Record<string, string> = {
-                littleLifeAtArt: 'Little life at Art',
-                theHomeCafe: 'The home cafe',
+                littleLifeAtArt: 'Little life in Art',
+                theHomeCafe: 'Nhà cafe',
             };
             return {
                 title: title || 'Untitled',

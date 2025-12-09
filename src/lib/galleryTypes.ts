@@ -16,8 +16,8 @@ export type CategoryFilter = 'all' | GalleryCategory;
  */
 export const CATEGORY_LABELS: Record<CategoryFilter, string> = {
   all: 'All',
-  littleLifeAtArt: 'Little life at Art',
-  theHomeCafe: 'The home cafe',
+  littleLifeAtArt: 'Little life in Art',
+  theHomeCafe: 'Nhà cafe',
 };
 
 /**
