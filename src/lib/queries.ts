@@ -144,3 +144,57 @@ export const cloudWalkerVideosQuery = groq`
     publishedAt
   }
 `;
+
+// Get all gallery photos with new fields (images array, category, portfolioLink)
+// Backward compatible: converts old 'image' field to 'images' array if needed
+// Requirements: 2.1, 2.4
+export const galleryPhotosQuery = groq`
+  *[_type == "galleryPhoto" && !(_id in path("drafts.**"))] | order(date desc) {
+    _id,
+    "images": select(
+      defined(images) => images[] {
+        asset,
+        hotspot,
+        crop
+      },
+      defined(image) => [image {
+        asset,
+        hotspot,
+        crop
+      }],
+      []
+    ),
+    category,
+    portfolioLink,
+    caption,
+    location,
+    date
+  }
+`;
+
+// Get gallery photos by category
+// Backward compatible: converts old 'image' field to 'images' array if needed
+// Requirements: 4.2
+export const galleryPhotosByCategoryQuery = groq`
+  *[_type == "galleryPhoto" && category == $category && !(_id in path("drafts.**"))] | order(date desc) {
+    _id,
+    "images": select(
+      defined(images) => images[] {
+        asset,
+        hotspot,
+        crop
+      },
+      defined(image) => [image {
+        asset,
+        hotspot,
+        crop
+      }],
+      []
+    ),
+    category,
+    portfolioLink,
+    caption,
+    location,
+    date
+  }
+`;

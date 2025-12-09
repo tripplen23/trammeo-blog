@@ -6,13 +6,45 @@ export default defineType({
     type: 'document',
     fields: [
         defineField({
-            name: 'image',
-            title: 'Image',
-            type: 'image',
+            name: 'images',
+            title: 'Images',
+            type: 'array',
+            of: [
+                {
+                    type: 'image',
+                    options: {
+                        hotspot: true,
+                    },
+                },
+            ],
+            validation: (Rule) =>
+                Rule.required()
+                    .min(1)
+                    .max(10)
+                    .error('Gallery post must have between 1 and 10 images'),
+        }),
+        defineField({
+            name: 'category',
+            title: 'Category',
+            type: 'string',
             options: {
-                hotspot: true,
+                list: [
+                    { title: 'Little life at Art', value: 'littleLifeAtArt' },
+                    { title: 'The home cafe', value: 'theHomeCafe' },
+                ],
+                layout: 'radio',
             },
-            validation: (Rule) => Rule.required(),
+            validation: (Rule) => Rule.required().error('Category is required'),
+        }),
+        defineField({
+            name: 'portfolioLink',
+            title: 'Portfolio Link',
+            type: 'url',
+            description: 'Optional external link to portfolio or related content',
+            validation: (Rule) =>
+                Rule.uri({
+                    scheme: ['http', 'https'],
+                }).error('Please enter a valid URL (http:// or https://)'),
         }),
         defineField({
             name: 'caption',
@@ -38,8 +70,19 @@ export default defineType({
     preview: {
         select: {
             title: 'caption',
-            subtitle: 'location',
-            media: 'image',
+            subtitle: 'category',
+            media: 'images',
+        },
+        prepare({ title, subtitle, media }) {
+            const categoryLabels: Record<string, string> = {
+                littleLifeAtArt: 'Little life at Art',
+                theHomeCafe: 'The home cafe',
+            };
+            return {
+                title: title || 'Untitled',
+                subtitle: categoryLabels[subtitle] || subtitle,
+                media: media?.[0],
+            };
         },
     },
 });
