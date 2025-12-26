@@ -191,17 +191,28 @@ function PhotoModal({ photo, onClose }: PhotoModalProps) {
 export default function PhotoGallery() {
   const [allPhotos, setAllPhotos] = useState<GalleryPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
   const [paginationState, setPaginationState] = useState<GalleryPaginationState>({
     currentPage: 0,
-    currentFilter: 'all',
+    currentFilter: 'littleLifeAtArt',
   });
   const [selectedPhoto, setSelectedPhoto] = useState<GalleryPost | null>(null);
+
+  // Ensure component is mounted before rendering to avoid hydration mismatch
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
         const data = await client.fetch(galleryPhotosQuery);
         setAllPhotos(data);
+        // Set the correct filter after photos are loaded
+        setPaginationState({
+          currentPage: 0,
+          currentFilter: 'littleLifeAtArt'
+        });
       } catch (error) {
         console.error('Error fetching photos:', error);
       } finally {
@@ -273,7 +284,7 @@ export default function PhotoGallery() {
     };
   }, [selectedPhoto]);
 
-  if (isLoading) {
+  if (isLoading || !isMounted) {
     return (
       <div className="w-full h-[600px] flex items-center justify-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black"></div>
