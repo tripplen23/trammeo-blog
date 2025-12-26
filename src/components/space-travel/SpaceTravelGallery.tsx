@@ -149,8 +149,11 @@ export default function SpaceTravelGallery({ initialPhotos }: SpaceTravelGallery
                                     >
                                         {/* Polaroid Frame */}
                                         <div 
-                                            className="relative bg-white shadow-xl transition-all duration-300 ease-out group-hover:shadow-2xl group-hover:-translate-y-1"
-                                            style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.3)' }}
+                                            className="relative shadow-xl transition-all duration-300 ease-out group-hover:shadow-2xl group-hover:-translate-y-1"
+                                            style={{ 
+                                                backgroundColor: '#EDE8DC',
+                                                boxShadow: '0 4px 20px rgba(0,0,0,0.3)' 
+                                            }}
                                         >
                                             {/* Image container */}
                                             <div className="p-2 pb-0">

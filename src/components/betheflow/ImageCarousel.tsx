@@ -39,8 +39,6 @@ const SWIPE_THRESHOLD = 50;
 /**
  * ImageCarousel Component
  * Instagram-style image carousel with navigation arrows and dot indicators
- *
- * Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7
  */
 export default function ImageCarousel({ images, alt = 'Gallery image' }: ImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
