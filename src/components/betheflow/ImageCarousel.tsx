@@ -118,7 +118,7 @@ export default function ImageCarousel({ images, alt = 'Gallery image' }: ImageCa
               src={urlForImage(images[currentIndex]).width(1200).height(1200).quality(90).url()}
               alt={`${alt} ${currentIndex + 1} of ${totalImages}`}
               fill
-              className="object-contain"
+              className="object-cover"
               sizes="(max-width: 768px) 100vw, 60vw"
               priority={currentIndex === 0}
             />
