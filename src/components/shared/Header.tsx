@@ -44,7 +44,6 @@ export default function Header() {
   }, [isMobileMenuOpen]);
 
   const navLinks = [
-    { href: '/about', label: t('about').toLowerCase() },
     { href: '/ben-ria-the-gioi', label: t('edgeOfTheWorld') },
     { href: '/betheflow', label: '#betheflow' },
     { href: '/nguoi-di-tren-may', label: t('cloudWalker') },

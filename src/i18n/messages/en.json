@@ -1,10 +1,10 @@
 {
   "home": {
     "about": "About",
-    "benRia": "The Edge of the World (writing)",
-    "beTheFlow": "BeTheFlow (barista)",
-    "nguoiDiTrenMay": "Cloud Walker (video)",
-    "duHanhKhongGian": "Space Travel (photography)"
+    "benRia": "The Edge of the World",
+    "beTheFlow": "BeTheFlow",
+    "nguoiDiTrenMay": "Cloud Walker",
+    "duHanhKhongGian": "Space Travel"
   },
   "nav": {
     "home": "Home",
@@ -57,7 +57,7 @@
         },
         "nguoiDiTrenMay": {
           "title": "Cloud Walker",
-          "description": "Video"
+          "description": "Travel & Exploration"
         },
         "duHanhKhongGian": {
           "title": "Space Travel",

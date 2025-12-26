@@ -78,7 +78,7 @@ export default function AboutIntro() {
           data-scroll-speed="0.7"
           className="text-white text-[3vw] z-3 whitespace-nowrap"
         >
-          About me, 
+          About her, 
         </h1>
       </div>
     </div>
