@@ -7,15 +7,14 @@ import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 export type GalleryCategory = 'littleLifeAtArt' | 'theHomeCafe';
 
 /**
- * Category filter type including "all" option for UI filtering
+ * Category filter type - now only includes the two main categories
  */
-export type CategoryFilter = 'all' | GalleryCategory;
+export type CategoryFilter = GalleryCategory;
 
 /**
  * Human-readable labels for category filters
  */
 export const CATEGORY_LABELS: Record<CategoryFilter, string> = {
-  all: 'All',
   littleLifeAtArt: 'Little life in Art',
   theHomeCafe: 'Nhà cafe',
 };
@@ -96,7 +95,7 @@ export function isValidCategory(category: string): category is GalleryCategory {
  * @returns true if filter is a valid CategoryFilter
  */
 export function isValidCategoryFilter(filter: string): filter is CategoryFilter {
-  return filter === 'all' || isValidCategory(filter);
+  return isValidCategory(filter);
 }
 
 /**
@@ -105,17 +104,17 @@ export function isValidCategoryFilter(filter: string): filter is CategoryFilter 
  * Validates: Requirements 4.2, 4.3
  *
  * @param posts - Array of gallery posts to filter
- * @param filter - Category filter to apply ('all' returns all posts)
- * @returns Filtered array of posts matching the category, or all posts if filter is 'all'
+ * @param filter - Category filter to apply
+ * @returns Filtered array of posts matching the category
  */
 export function filterPostsByCategory(
   posts: GalleryPost[],
-  filter: CategoryFilter
+  filter: CategoryFilter | string
 ): GalleryPost[] {
-  if (filter === 'all') {
-    return posts;
-  }
-  return posts.filter((post) => post.category === filter);
+  const validFilter: CategoryFilter = (filter === 'littleLifeAtArt' || filter === 'theHomeCafe') 
+    ? filter 
+    : 'littleLifeAtArt';
+  return posts.filter((post) => post.category === validFilter);
 }
 
 /**

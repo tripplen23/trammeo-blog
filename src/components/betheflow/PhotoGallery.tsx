@@ -187,7 +187,6 @@ function PhotoModal({ photo, onClose }: PhotoModalProps) {
 
 /**
  * Main PhotoGallery component
- * Requirements: 2.1, 2.4, 4.1, 4.2, 4.3, 4.4, 5.1, 5.2, 6.1, 6.2, 6.3
  */
 export default function PhotoGallery() {
   const [allPhotos, setAllPhotos] = useState<GalleryPost[]>([]);
