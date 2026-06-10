@@ -14,11 +14,11 @@ interface CategoryFilterProps {
 /**
  * All available category filter options in display order
  */
-const FILTER_OPTIONS: CategoryFilterType[] = ['littleLifeAtArt', 'theHomeCafe'];
+const FILTER_OPTIONS: CategoryFilterType[] = ['all', 'littleLifeAtArt', 'theHomeCafe'];
 
 /**
  * CategoryFilter component for filtering gallery posts by category
- * Renders filter buttons for "Little life in Art", "Nhà cafe"
+ * Renders filter buttons for "All", "Little life in Art", "Nhà cafe"
  *
  * Requirements: 4.1 - Display category filter options
  * Requirements: 4.4 - Supports filter change callback for pagination reset
@@ -30,14 +30,10 @@ export default function CategoryFilter({
   selectedCategory,
   onCategoryChange,
 }: CategoryFilterProps) {
-  const activeCategory = (selectedCategory === 'littleLifeAtArt' || selectedCategory === 'theHomeCafe')
-    ? selectedCategory
-    : 'littleLifeAtArt';
-
   return (
     <div className="flex flex-wrap gap-3 justify-center">
       {FILTER_OPTIONS.map((category) => {
-        const isActive = activeCategory === category;
+        const isActive = selectedCategory === category;
 
         return (
           <button
