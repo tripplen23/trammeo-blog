@@ -15,16 +15,6 @@ import {
   CarouselNavigationState,
 } from '@/lib/carouselUtils';
 
-// Re-export types and functions for convenience
-export type { CarouselNavigationState } from '@/lib/carouselUtils';
-export {
-  navigateNext,
-  navigatePrevious,
-  canNavigateNext,
-  canNavigatePrevious,
-  getIndicatorCount,
-} from '@/lib/carouselUtils';
-
 /**
  * Props for the ImageCarousel component
  */

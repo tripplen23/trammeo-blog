@@ -34,11 +34,13 @@ vi.mock('../PostCard', () => ({
 // Helper function to create mock posts
 const createMockPost = (id: string, publishedAt: string): Post => ({
   _id: id,
+  _type: 'post',
   title: { en: `Post ${id}`, vi: `Bài viết ${id}` },
   slug: { current: `post-${id}` },
   category: 'ben-ria-the-gioi',
   publishedAt,
   featured: false,
+  content: { en: [], vi: [] },
   topic: {
     title: { en: 'Test Topic', vi: 'Chủ đề test' },
     slug: { current: 'test-topic' },
