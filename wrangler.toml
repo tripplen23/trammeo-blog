@@ -1,0 +1,9 @@
+# Trammeo Blog — Cloudflare Pages configuration
+name = "trammeo-blog"
+pages_build_output_dir = ".vercel/output/static"
+compatibility_date = "2025-07-11"
+compatibility_flags = ["nodejs_compat"]
+
+# Worker config for Pages Functions (SSR)
+[env.production]
+vars = { ENVIRONMENT = "production" }
