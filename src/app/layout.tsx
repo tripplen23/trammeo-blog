@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Space_Grotesk, Playfair_Display, Pacifico, Orbitron } from 'next/font/google';
 import './globals.css';
 
+export const runtime = 'edge';
+
 const spaceGrotesk = Space_Grotesk({
   variable: '--font-space-grotesk',
   subsets: ['latin', 'vietnamese'],
