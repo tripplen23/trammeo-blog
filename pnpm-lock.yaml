@@ -117,6 +117,9 @@ importers:
       vitest:
         specifier: ^4.0.14
         version: 4.0.14(@types/node@20.19.24)(jiti@2.6.1)(jsdom@27.2.0)(lightningcss@1.30.2)(yaml@2.8.1)
+      wrangler:
+        specifier: ^4.110.0
+        version: 4.110.0
 
 packages:
 
@@ -9177,7 +9180,7 @@ snapshots:
       tar-stream: 3.1.7
       vite: 7.2.2(@types/node@20.19.24)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1)
       vite-tsconfig-paths: 5.1.4(typescript@5.9.3)(vite@7.2.2(@types/node@20.19.24)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1))
-      ws: 8.18.3
+      ws: 8.21.0
       xdg-basedir: 5.1.0
     transitivePeerDependencies:
       - '@types/node'
@@ -11881,7 +11884,7 @@ snapshots:
       whatwg-encoding: 3.1.1
       whatwg-mimetype: 4.0.0
       whatwg-url: 14.2.0
-      ws: 8.18.3
+      ws: 8.21.0
       xml-name-validator: 5.0.0
     transitivePeerDependencies:
       - bufferutil
